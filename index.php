@@ -1,28 +1,22 @@
 <?php
-
-// Elijah Maret, Imelda Medina
-
-//Start a session
-session_start();
-
+/*
+ * Imelda Medina
+ * Elijah Merit
+ * 1/25/2020
+ * 328/home.index.php
+ */
 //Turn on error reporting
-ini_set('display_errors', 1);
+ini_set('display_errors',1);
 error_reporting(E_ALL);
+//Require autoload file
+require("vendor/autoload.php");
+//Instantiate F3
+$f3 = Base:: instance();
 
-//Required file
-require_once('vendor/autoload.php');
-//require_once('model/validate.php');
-
-//Instantiate Fat-Free
-$f3 = Base::instance();
-
-//Turn on Fat-Free error reporting
-$f3->set('DEBUG', 3);
-
-//Define a default route
-$f3->route('GET /', function() {
-    echo "hello world";
+//define a default route
+$f3->route('GET /', function(){
+    $view = new Template();
+    echo $view->render('views/home.html');
 });
-
-//Run Fat-Free
+//Run F3
 $f3->run();

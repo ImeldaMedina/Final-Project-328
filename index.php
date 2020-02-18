@@ -18,5 +18,10 @@ $f3->route('GET /', function(){
     $view = new Template();
     echo $view->render('views/home.html');
 });
+//define a default route for new user
+$f3->route('GET /', function(){
+    $view = new Template();
+    echo $view->render('views/new-user.html');
+});
 //Run F3
 $f3->run();

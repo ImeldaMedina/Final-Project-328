@@ -1,3 +1,4 @@
+DROP TABLE IF EXISTS login;
 
 CREATE TABLE login(
 id int(10) NOT NULL AUTO_INCREMENT primary key,
@@ -9,15 +10,20 @@ email varchar(255) NOT NULL,
  last_updated datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
-insert into login values (null, 1, 'admin', MD5('@dm1n'), 'Emaret2@mail.greenriver.edu', now(), now());
-insert into login values (null, 0, 'Ronaldo', MD5('Donaldo'), 'rondo23@mail.com', now(), now());
+insert into login values (null, TRUE, 'admin', MD5('@dm1n'), 'Emaret2@mail.greenriver.edu', now(), now());
+insert into login values (null, TRUE, 'Ronaldo', MD5('Donaldo'), 'rondo23@mail.com', now(), now());
 
 
-/*
-// https://stackoverflow.com/questions/8710982/md5-password-retrieving
+CREATE TABLE user(
+id int(10) NOT NULL primary key,
+email varchar(255) NOT NULL,
 
-select * from login where password = md5('@dm1n') and admin_status > 0;
+);
 
-$pass = trim($_POST['pass']);
-$pass = md5($pass);
-*/
+
+-- https://stackoverflow.com/questions/8710982/md5-password-retrieving
+
+--select * from login where password = md5('@dm1n') and admin_status > 0;
+
+--$pass = trim($_POST['pass']);
+--$pass = md5($pass);

@@ -1,7 +1,7 @@
 <?php
 /*
  * Imelda Medina
- * Elijah Merit
+ * Elijah Maret
  * 1/25/2020
  * 328/home.index.php
  */

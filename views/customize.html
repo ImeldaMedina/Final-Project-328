@@ -1,0 +1,23 @@
+<include href="views/header.html">
+    <include href="views/navbar.html">
+<body>
+<form id="main" method="post" action="#">
+    <h1>Customize</h1>
+<!--    purpose drop down -->
+        <label for="purpose">Purpose:</label>
+            <select id="purpose">
+                <option value="none">-- Purpose --</option>
+                <repeat group="{{ @purposes }}"
+                        value="{{ @purpose }}">
+                    <option value="{{ @purpose }}"
+
+                    <check if="{{ @purp == @purpose }}">
+                        selected="selected"
+                    </check>
+                    >{{ @purpose }}
+                    </option>
+                </repeat>
+            </select>
+</form>
+</body>
+</html>

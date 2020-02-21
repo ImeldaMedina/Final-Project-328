@@ -18,6 +18,81 @@
                     </option>
                 </repeat>
             </select>
+    <!--    purpose drop down -->
+    <label for="purpose">Purpose:</label>
+    <select id="purpose">
+        <option value="none">-- Purpose --</option>
+        <repeat group="{{ @purposes }}"
+                value="{{ @purpose }}">
+            <option value="{{ @purpose }}"
+
+            <check if="{{ @purp == @purpose }}">
+                selected="selected"
+            </check>
+            >{{ @purpose }}
+            </option>
+        </repeat>
+    </select>
+    <!--    purpose drop down -->
+    <label for="hyperdrive">hyperdrive:</label>
+    <select id="hyperdrive">
+        <option value="none">-- Select Hyperdrive --</option>
+        <repeat group="{{ @hyperdrives }}"
+                value="{{ @hyperdrive }}">
+            <option value="{{ @hyperdrive }}"
+
+            <check if="{{ @hyper == @hyperdrive }}">
+                selected="selected"
+            </check>
+            >{{ @hyperdrive }}
+            </option>
+        </repeat>
+    </select>
+    <!--    purpose drop down -->
+    <label for="engine">Engine:</label>
+    <select id="engine">
+        <option value="none">-- Select Engine --</option>
+        <repeat group="{{ @engines }}"
+                value="{{ @engine }}">
+            <option value="{{ @engine }}"
+
+            <check if="{{ @eng == @engine }}">
+                selected="selected"
+            </check>
+            >{{ @engine }}
+            </option>
+        </repeat>
+    </select>
+    <!--    purpose drop down -->
+    <label for="shielding">Shielding:</label>
+    <select id="shielding">
+        <option value="none">-- Please select one --</option>
+        <repeat group="{{ @shieldings }}"
+                value="{{ @shielding }}">
+            <option value="{{ @shielding }}"
+
+            <check if="{{ @shield == @shielding }}">
+                selected="selected"
+            </check>
+            >{{ @shielding }}
+            </option>
+        </repeat>
+    </select>
+    <!--    purpose drop down -->
+    <label for="color">Color:</label>
+    <select id="color">
+        <option value="none">-- Select a color --</option>
+        <repeat group="{{ @colors }}"
+                value="{{ @color }}">
+            <option value="{{ @color }}"
+
+            <check if="{{ @col == @color }}">
+                selected="selected"
+            </check>
+            >{{ @color }}
+            </option>
+        </repeat>
+    </select>
 </form>
 </body>
 </html>

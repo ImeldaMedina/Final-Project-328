@@ -23,14 +23,16 @@ $f3->set('shieldings', array('s-0001-A','s-0001-B','s-0002-A','s-0002-B','s-0002
 $f3->set('engines',array());
 $f3->set('hyperdrives',array());
 //define a default route
-$f3->route('GET|POST /log', function(){
-    $view = new Template();
-    echo $view->render('views/home.html');
-});
+
 //define a default route for new user
 $f3->route('GET|POST /new', function(){
     $view = new Template();
     echo $view->render('views/new-user.html');
+});
+//login page route
+$f3->route('GET|POST / login', function(){
+    $view = new Template();
+    echo $view->render('views/login.html');
 });
 $f3->route('GET|POST /customize', function($f3){
     //If form has been submitted, validate

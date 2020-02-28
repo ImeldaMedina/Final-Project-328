@@ -1,3 +1,11 @@
+.jumbotron {
+    background-image: url("../images/images.jpeg");
+    background-size: 100% 100%;;
+    background-position: center;
+    margin-left: 30px;
+    margin-right: 30px;
+
+}
 .masthead {
     height: 100vh;
     min-height: 500px;

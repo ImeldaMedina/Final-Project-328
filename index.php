@@ -45,6 +45,9 @@ $f3->route('GET|POST /customize', function($f3){
 //get the results printed
 $f3->route('GET|POST /summary', function(){
     $GLOBALS['controller']->summary();
+//this will wipe everything
+    session_destroy();
+    $_SESSION = array();
 });
 //Run F3
 $f3->run();

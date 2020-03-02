@@ -35,7 +35,6 @@ $f3->route('GET /', function(){
 });
 $f3->route('GET /home', function(){
     $GLOBALS['controller']->home();
-
 });
 
 //define a default route for new user

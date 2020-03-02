@@ -31,6 +31,11 @@ $f3->route('GET /', function(){
     $GLOBALS['controller']->home();
 
 });
+$f3->route('GET /home', function(){
+    $GLOBALS['controller']->home();
+
+});
+
 //define a default route for new user
 $f3->route('GET|POST /newUser', function(){
     $GLOBALS['controller']->newUser();

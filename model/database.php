@@ -56,4 +56,41 @@ class FinalDatabase
         $result = $statement->fetchAll(PDO::FETCH_ASSOC);
         return $result;
     }
+
+    function getSpecificModule($type, $id)
+    {
+        switch($type){
+            case 'Engine':
+                $sql = "SELECT * FROM Engines where engine_id = :id";
+                break;
+            case 'Hyperdrive':
+                $sql = "SELECT * FROM Hyperdrives where hyperdrive_id = :id";
+                break;
+            case 'Generator':
+                $sql = "SELECT * FROM Generators where generator_id = :id";
+                break;
+            case 'Shield':
+                $sql = "SELECT * FROM Shields where shield_id = :id";
+                break;
+            case 'Purpose':
+                $sql = "SELECT * FROM Purposes where purpose_id = :id";
+                break;
+            default:
+                return false;
+
+        }
+
+        //2. Prepare the statement
+        $statement = $this->_dbh->prepare($sql);
+
+        //3. Bind the parameters
+        $statement->bindParam(':id', $id);
+
+        //4. Execute the statement
+        $statement->execute();
+
+        //5. Get the result
+        $result = $statement->fetch(PDO::FETCH_ASSOC);
+        return $result;
+    }
 }

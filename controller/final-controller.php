@@ -38,6 +38,7 @@ class FinalController
             $generator = $_POST['generator'];
             $engine = $_POST['engine'];
             $hyperdrive = $_POST['hyperdive'];
+
             //Add data to hive
             $f3->set('purp',$purpose);
             $f3->set('col',$color);

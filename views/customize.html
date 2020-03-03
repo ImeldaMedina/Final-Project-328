@@ -1,84 +1,130 @@
-<include href="views/header.html">
-    <include href="views/navbar.html">
+<include href="views/header.html"></include>
+<include href="views/navbar.html"></include>
+<link rel="stylesheet" type="text/css" href="styles/customize.css">
 <body>
-<form id="main" method="post" action="#">
-    <h1>Customize</h1>
 
-    <!--    purpose drop down -->
-    <label for="purpose">Purpose:</label>
-    <select id="purpose">
-        <option value="none">-- Purpose --</option>
-        <repeat group="{{ @purposes }}"
-                value="{{ @purpose }}">
-            <option value="{{ @purpose }}"
+<div class="container align-items-center" id ='contain'>
+    <form id="main" method="post" action="#">
+        <h1>Customize</h1>
 
-            <check if="{{ @purp == @purpose }}">
-                selected="selected"
-            </check>
-            >{{ @purpose }}
-            </option>
-        </repeat>
-    </select>
-    <!--    purpose drop down -->
-    <label for="hyperdrive">hyperdrive:</label>
-    <select id="hyperdrive">
-        <option value="none">-- Select Hyperdrive --</option>
-        <repeat group="{{ @hyperdrives }}"
-                value="{{ @hyperdrive }}">
-            <option value="{{ @hyperdrive }}"
+        <fieldset class ='form-group'>
+            <legend>Engine Components</legend>
+            <!-- Engine Components -->
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="engine">Engine:</label>
+                    <select id="engine">
+                        <option value="none">-- Select Engine --</option>
+                        <repeat group="{{ @engines }}"
+                                value="{{ @engine }}">
+                            <option value="{{ @engine }}"
 
-            <check if="{{ @hyper == @hyperdrive }}">
-                selected="selected"
-            </check>
-            >{{ @hyperdrive }}
-            </option>
-        </repeat>
-    </select>
-    <!--    purpose drop down -->
-    <label for="engine">Engine:</label>
-    <select id="engine">
-        <option value="none">-- Select Engine --</option>
-        <repeat group="{{ @engines }}"
-                value="{{ @engine }}">
-            <option value="{{ @engine }}"
+                            <check if="{{ @eng == @engine }}">
+                                selected="selected"
+                            </check>
+                            >{{ @engine }}
+                            </option>
+                        </repeat>
+                    </select>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="hyperdrive">Hyperdrive:</label>
+                    <select id="hyperdrive">
+                        <option value="none">-- Select Hyperdrive --</option>
+                        <repeat group="{{ @hyperdrives }}"
+                                value="{{ @hyperdrive }}">
+                            <option value="{{ @hyperdrive }}"
 
-            <check if="{{ @eng == @engine }}">
-                selected="selected"
-            </check>
-            >{{ @engine }}
-            </option>
-        </repeat>
-    </select>
-    <!--    purpose drop down -->
-    <label for="shielding">Shielding:</label>
-    <select id="shielding">
-        <option value="none">-- Please select one --</option>
-        <repeat group="{{ @shieldings }}"
-                value="{{ @shielding }}">
-            <option value="{{ @shielding }}"
+                            <check if="{{ @hyper == @hyperdrive }}">
+                                selected="selected"
+                            </check>
+                            >{{ @hyperdrive }}
+                            </option>
+                        </repeat>
+                    </select>
+                </div>
+            </div>
+        </fieldset>
+        <fieldset class ='form-group'>
+            <legend>Utilities</legend>
+            <!--    Utility  -->
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="generator">Generators:</label>
+                    <select id="generator">
+                        <option value="none">-- Please select one --</option>
+                        <repeat group="{{ @generators }}"
+                                value="{{ @generator }}">
+                            <option value="{{ @generator }}"
 
-            <check if="{{ @shield == @shielding }}">
-                selected="selected"
-            </check>
-            >{{ @shielding }}
-            </option>
-        </repeat>
-    </select>
-    <!--    purpose drop down -->
-    <label for="color">Color:</label>
-    <select id="color">
-        <option value="none">-- Select a color --</option>
-        <repeat group="{{ @colors }}"
-                value="{{ @color }}">
-            <option value="{{ @color }}"
+                            <check if="{{ @gen == @generator }}">
+                                selected="selected"
+                            </check>
+                            >{{ @generator }}
+                            </option>
+                        </repeat>
+                    </select>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="shielding">Shields:</label>
+                    <select id="shielding">
+                        <label for="generator">Generators:</label>
+                        <option value="none">-- Please select one --</option>
+                        <repeat group="{{ @shieldings }}"
+                                value="{{ @shielding }}">
+                            <option value="{{ @shielding }}"
 
-            <check if="{{ @col == @color }}">
-                selected="selected"
-            </check>
-            >{{ @color }}
-            </option>
-        </repeat>
-    </select>
-</form>
+                            <check if="{{ @shield == @shielding }}">
+                                selected="selected"
+                            </check>
+                            >{{ @shielding }}
+                            </option>
+                        </repeat>
+                    </select>
+                </div>
+            </div>
+        </fieldset>
+
+
+        <!--    Purpose -->
+        <fieldset class ='form-group'>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="purpose">Purpose:</label>
+                    <select id="purpose" class>
+                        <option value="none">-- Purpose --</option>
+                        <repeat group="{{ @purposes }}"
+                                value="{{ @purpose }}">
+                            <option value="{{ @purpose }}"
+
+                            <check if="{{ @purp == @purpose }}">
+                                selected="selected"
+                            </check>
+                            >{{ @purpose }}
+                            </option>
+                        </repeat>
+                    </select>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="color">Color:</label>
+                    <select id="color">
+                        <option value="none">-- Select a color --</option>
+                        <repeat group="{{ @colors }}"
+                                value="{{ @color }}">
+                            <option value="{{ @color }}"
+
+                            <check if="{{ @col == @color }}">
+                                selected="selected"
+                            </check>
+                            >{{ @color }}
+                            </option>
+                        </repeat>
+                    </select>
+                </div>
+            </div>
+        <!--    purpose drop down -->
+        </fieldset>
+    </form>
+</div>
 </body>
 </html>

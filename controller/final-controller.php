@@ -26,20 +26,23 @@ class FinalController
         $view = new Template();
         echo $view->render('views/login.html');
     }
-    public function customShip($f3)
+    public function customShip($f3, $db)
     {
+
         //If form has been submitted, validate
         if($_SERVER['REQUEST_METHOD'] == 'POST') {
             //Get the data from the form
             $purpose = $_POST['purpose'];
             $color= $_POST['color'];
             $shielding = $_POST['shielding'];
+            $generator = $_POST['generator'];
             $engine = $_POST['engine'];
             $hyperdrive = $_POST['hyperdive'];
             //Add data to hive
             $f3->set('purp',$purpose);
             $f3->set('col',$color);
             $f3->set('shield',$shielding);
+            $f3->set('gen',$generator);
             $f3->set('eng',$engine);
             $f3->set('hyper',$hyperdrive);
             //If data is valid
@@ -49,6 +52,7 @@ class FinalController
                 $_SESSION['purp'] = $purpose;
                 $_SESSION['col'] = $color;
                 $_SESSION['shield'] =$shielding;
+                $_SESSION['gen'] =$generator;
                 $_SESSION['eng'] =$engine;
                 $_SESSION['hyper'] =$hyperdrive;
                 //redirect to finalize

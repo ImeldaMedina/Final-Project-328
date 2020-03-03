@@ -1,0 +1,16 @@
+#contain{
+    margin: auto;
+    padding: 12px;
+    width: 80%;
+}
+
+fieldset {
+    padding: 12px;
+    border: 2px solid darkgoldenrod;
+    border-radius: 4px;
+}
+
+legend {
+    width: auto;
+}
+

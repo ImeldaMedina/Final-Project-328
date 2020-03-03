@@ -23,6 +23,28 @@ class FinalDatabase
 
     function getModules($type)
     {
+        switch($type){
+            case 'Engine':
+                $sql = "SELECT * FROM Engines";
+                break;
+            case 'Hyperdrive':
+                $sql = "SELECT * FROM Hyperdrives";
+                break;
+        }
+
+
+        //2. Prepare the statement
+        $statement = $this->_dbh->prepare($sql);
+
+        //3. Bind the parameters
+
+
+        //4. Execute the statement
+        $statement->execute();
+
+        //5. Get the result
+        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
 
     }
 }

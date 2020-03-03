@@ -46,7 +46,8 @@ $f3->route('GET|POST /login', function(){
     $GLOBALS['controller']->login();
 });
 $f3->route('GET|POST /customize', function($f3){
-    $GLOBALS['controller']->customShip($f3);
+    global $db;
+    $GLOBALS['controller']->customShip($f3, $db);
 });
 //get the results printed
 $f3->route('GET|POST /summary', function(){
@@ -54,6 +55,11 @@ $f3->route('GET|POST /summary', function(){
 //this will wipe everything
     session_destroy();
     $_SESSION = array();
+});
+
+$f3->route('GET /test', function(){
+    global $db;
+    var_dump($db->getModules("Engines"));
 });
 //Run F3
 $f3->run();

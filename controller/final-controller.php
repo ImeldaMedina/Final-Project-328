@@ -3,11 +3,13 @@ class FinalController
 {
     private $_f3; //router
     private $_val; //validation
+    private $_db; // database
 
 
-    public function __construct($f3)
+    public function __construct($f3, $db)
     {
         $this->_f3 = $f3;
+        $this->_db = $db;
         $this->_val = new FinalValidation();
     }
 
@@ -23,10 +25,28 @@ class FinalController
     }
     public function login()
     {
+        if($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+            $username = $_POST['username'];
+            $password= $_POST['password'];
+
+            if (isset($_SESSION['username'])) {
+                $this->_f3->reroute('/home');
+            }
+
+            if (!$this->_db->validateLogin($username, $password)) { // if not validated
+                echo 'no';
+            } else {
+                $_SESSION['username'] = $username;
+                //Store login name in a session variable
+                $this->_f3->reroute('/home');
+                //Redirect to page 1
+            }
+        }
         $view = new Template();
         echo $view->render('views/login.html');
     }
-    public function customShip($f3, $db)
+    public function customShip()
     {
 
         //If form has been submitted, validate
@@ -40,12 +60,12 @@ class FinalController
             $hyperdrive = $_POST['hyperdive'];
 
             //Add data to hive
-            $f3->set('purp',$purpose);
-            $f3->set('col',$color);
-            $f3->set('shield',$shielding);
-            $f3->set('gen',$generator);
-            $f3->set('eng',$engine);
-            $f3->set('hyper',$hyperdrive);
+            $this->_f3->set('purp',$purpose);
+            $this->_f3->set('col',$color);
+            $this->_f3->set('shield',$shielding);
+            $this->_f3->set('gen',$generator);
+            $this->_f3->set('eng',$engine);
+            $this->_f3->set('hyper',$hyperdrive);
             //If data is valid
             if(validForm()){
 
@@ -57,7 +77,7 @@ class FinalController
                 $_SESSION['eng'] =$engine;
                 $_SESSION['hyper'] =$hyperdrive;
                 //redirect to finalize
-                $f3->reroute('/finalize');
+                $this->_f3->reroute('/finalize');
             }
         }
         $view = new Template();

@@ -28,7 +28,7 @@ $f3->set('hyperdrives', $db->getModules("Hyperdrive"));
 //define a default route
 
 //Instantiate controller object
-$controller= new FinalController($f3);
+$controller= new FinalController($f3, $db);
 
 $f3->route('GET /', function(){
     $GLOBALS['controller']->home();
@@ -48,7 +48,7 @@ $f3->route('GET|POST /login', function(){
 });
 $f3->route('GET|POST /customize', function($f3){
     global $db;
-    $GLOBALS['controller']->customShip($f3, $db);
+    $GLOBALS['controller']->customShip();
 });
 //get the results printed
 $f3->route('GET|POST /summary', function(){
@@ -61,7 +61,13 @@ $f3->route('GET|POST /summary', function(){
 $f3->route('GET /test', function(){
     global $db;
     echo '<pre>';
-    var_dump($db->getModules("Hyperdrive"));
+    //var_dump($db->validateLogin("Admin", "dm1n"));
+    if(!$db->validateLogin("Admin", "@dm1n")){ // if not validated
+        echo 'no';
+    }else {
+        echo 'yes';
+    }
+
     echo '</pre>';
 });
 //Run F3

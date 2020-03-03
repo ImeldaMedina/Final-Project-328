@@ -93,4 +93,24 @@ class FinalDatabase
         $result = $statement->fetch(PDO::FETCH_ASSOC);
         return $result;
     }
+
+
+    function validateLogin($username, $password)
+    {
+        $sql = "SELECT username, password from login where username = :username and password = :password";
+
+        //2. Prepare the statement
+        $statement = $this->_dbh->prepare($sql);
+
+        //3. Bind the parameters
+        $statement->bindParam(':username', $username);
+        $statement->bindParam(':password', $password);
+
+        //4. Execute the statement
+        $statement->execute();
+
+        //5. Get the result
+        $result = $statement->fetch(PDO::FETCH_ASSOC);
+        return $result;
+    }
 }

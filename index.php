@@ -19,11 +19,12 @@ $db = new FinalDatabase();
 $f3->set('DEBUG', 3);
 
 //Define arrays
-$f3->set('purposes', array('Multipurpose', 'Warship', 'Passenger Liner', 'Luxury'));
+$f3->set('purposes', $db->getModules("Purpose"));
 $f3->set('colors', array('red', 'black', 'silver', 'white', 'gold', 'yellow'));
-$f3->set('shieldings', array('s-0001-A','s-0001-B','s-0002-A','s-0002-B','s-0002-C','s-????-A','s-????-B'));
-$f3->set('engines',array());
-$f3->set('hyperdrives',array());
+$f3->set('shieldings', $db->getModules("Shield"));
+$f3->set('generators', $db->getModules("Generator"));
+$f3->set('engines', $db->getModules("Engine"));
+$f3->set('hyperdrives', $db->getModules("Hyperdrive"));
 //define a default route
 
 //Instantiate controller object
@@ -59,7 +60,9 @@ $f3->route('GET|POST /summary', function(){
 
 $f3->route('GET /test', function(){
     global $db;
-    var_dump($db->getModules("Engines"));
+    echo '<pre>';
+    var_dump($db->getModules("Hyperdrive"));
+    echo '</pre>';
 });
 //Run F3
 $f3->run();

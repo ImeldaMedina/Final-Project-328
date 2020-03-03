@@ -17,12 +17,12 @@
                         <option value="none">-- Select Engine --</option>
                         <repeat group="{{ @engines }}"
                                 value="{{ @engine }}">
-                            <option value="{{ @engine }}"
+                            <option value="{{ @engine[engine_id] }}"
 
-                            <check if="{{ @eng == @engine }}">
+                            <check if="{{ @eng == @engine[engine_id] }}">
                                 selected="selected"
                             </check>
-                            >{{ @engine }}
+                            >{{ @engine[engine_name] }}
                             </option>
                         </repeat>
                     </select>
@@ -33,12 +33,12 @@
                         <option value="none">-- Select Hyperdrive --</option>
                         <repeat group="{{ @hyperdrives }}"
                                 value="{{ @hyperdrive }}">
-                            <option value="{{ @hyperdrive }}"
+                            <option value="{{ @hyperdrive[hperdrive_id] }}"
 
-                            <check if="{{ @hyper == @hyperdrive }}">
+                            <check if="{{ @hyper == @hyperdrive[hyperdrive_id] }}">
                                 selected="selected"
                             </check>
-                            >{{ @hyperdrive }}
+                            >{{ @hyperdrive[hyperdrive_name] }}
                             </option>
                         </repeat>
                     </select>
@@ -55,12 +55,12 @@
                         <option value="none">-- Please select one --</option>
                         <repeat group="{{ @generators }}"
                                 value="{{ @generator }}">
-                            <option value="{{ @generator }}"
+                            <option value="{{ @generator[generator_id] }}"
 
-                            <check if="{{ @gen == @generator }}">
+                            <check if="{{ @gen == @generator[generator_id] }}">
                                 selected="selected"
                             </check>
-                            >{{ @generator }}
+                            >{{ @generator[generator_name] }}
                             </option>
                         </repeat>
                     </select>
@@ -72,12 +72,12 @@
                         <option value="none">-- Please select one --</option>
                         <repeat group="{{ @shieldings }}"
                                 value="{{ @shielding }}">
-                            <option value="{{ @shielding }}"
+                            <option value="{{ @shielding[shield_id] }}"
 
-                            <check if="{{ @shield == @shielding }}">
+                            <check if="{{ @shield == @shielding[shield_id] }}">
                                 selected="selected"
                             </check>
-                            >{{ @shielding }}
+                            >{{ @shielding[shield_name] }}
                             </option>
                         </repeat>
                     </select>
@@ -95,12 +95,12 @@
                         <option value="none">-- Purpose --</option>
                         <repeat group="{{ @purposes }}"
                                 value="{{ @purpose }}">
-                            <option value="{{ @purpose }}"
+                            <option value="{{ @purpose[purpose_id] }}"
 
-                            <check if="{{ @purp == @purpose }}">
+                            <check if="{{ @purp == @purpose[purpose_id] }}">
                                 selected="selected"
                             </check>
-                            >{{ @purpose }}
+                            >{{ @purpose[purpose_name] }}
                             </option>
                         </repeat>
                     </select>

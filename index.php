@@ -10,6 +10,9 @@ ini_set('display_errors',1);
 error_reporting(E_ALL);
 //Require autoload file
 require("vendor/autoload.php");
+
+session_start();
+
 //Instantiate F3
 $f3 = Base:: instance();
 
@@ -62,13 +65,10 @@ $f3->route('GET /test', function(){
     global $db;
     echo '<pre>';
     //var_dump($db->validateLogin("Admin", "dm1n"));
-    if(!$db->validateLogin("Admin", "@dm1n")){ // if not validated
-        echo 'no';
-    }else {
-        echo 'yes';
-    }
 
     echo '</pre>';
+
+    echo $_SESSION['username'];
 });
 //Run F3
 $f3->run();

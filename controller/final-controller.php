@@ -25,14 +25,17 @@ class FinalController
     }
     public function login()
     {
+
+        if (isset($_SESSION['username'])) {
+            $this->_f3->reroute('/home');
+        }
+
         if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             $username = $_POST['username'];
             $password= $_POST['password'];
 
-            if (isset($_SESSION['username'])) {
-                $this->_f3->reroute('/home');
-            }
+            //echo $_SESSION['username'];
 
             if (!$this->_db->validateLogin($username, $password)) { // if not validated
                 echo 'no';

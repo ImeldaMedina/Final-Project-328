@@ -1,7 +1,10 @@
 <?php
 class Starship{
     private $_name;
+    private $_last;
+    private $_email;
     private $_description;
+
 
     public function __construct($name, $description)
     {
@@ -23,6 +26,37 @@ class Starship{
     public function setName($name)
     {
         $this->_name = $name;
+    }
+    /**
+     * @return mixed
+     */
+    public function getLast()
+    {
+        return $this->_last;
+    }
+
+    /**
+     * @param mixed $last
+     */
+    public function setLast($last)
+    {
+        $this->_last = $last;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getEmail()
+    {
+        return $this->_email;
+    }
+
+    /**
+     * @param mixed $email
+     */
+    public function setEmail($email)
+    {
+        $this->_email = $email;
     }
 
     /**

@@ -1,5 +1,5 @@
 <?php
-class BattleShip extends Starship{
+class BattleShip extends StarShip{
 
     private $_battleStrength;
 

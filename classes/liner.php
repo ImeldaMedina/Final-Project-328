@@ -1,5 +1,5 @@
 <?php
-class Liner extends Starship{
+class Liner extends StarShip{
 
     private $_capacity;
 

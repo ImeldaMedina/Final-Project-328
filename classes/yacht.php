@@ -1,5 +1,5 @@
 <?php
-class Yacht extends Starship{
+class Yacht extends StarShip{
 
     private $_starRating;
 

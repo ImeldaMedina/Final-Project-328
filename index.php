@@ -18,6 +18,7 @@ $f3 = Base:: instance();
 
 $db = new FinalDatabase();
 
+
 //Turn on Fat-Free error reporting
 $f3->set('DEBUG', 3);
 

@@ -66,7 +66,7 @@ class FinalController
             $shielding = $_POST['shielding'];
             $generator = $_POST['generator'];
             $engine = $_POST['engine'];
-            $hyperdrive = $_POST['hyperdive'];
+            $hyperdrive = $_POST['hyperdrive'];
 
             if($purpose == 'p-0001'){
                 $ship = new StarShip('testName', $generator, $engine, $hyperdrive, $shielding, $color);
@@ -81,29 +81,28 @@ class FinalController
             }
 
             //Add data to hive
-            $this->_f3->set('purp',$purpose);
-            $this->_f3->set('col',$color);
-            $this->_f3->set('shield',$shielding);
-            $this->_f3->set('gen',$generator);
-            $this->_f3->set('eng',$engine);
-            $this->_f3->set('hyper',$hyperdrive);
+
+            $this->_f3->set('ship', $ship);
+
 
             //If data is valid
-            if(validForm()){
+            if(true /*$this->_val->validFormCustomize() */ ){
 
                 //write data to session
 
                 $_SESSION['ship'] = $ship;
 
-                /*
+
                 $_SESSION['purp'] = $purpose;
                 $_SESSION['col'] = $color;
                 $_SESSION['shield'] =$shielding;
                 $_SESSION['gen'] =$generator;
                 $_SESSION['eng'] =$engine;
                 $_SESSION['hyper'] =$hyperdrive;
-                */
+
                 //redirect to finalize
+
+/*
                 if(is_a($ship, 'BattleShip')) {
                     $this->_f3->reroute('/finalize');
                 }
@@ -112,7 +111,9 @@ class FinalController
                 }
                 if(is_a($ship, 'Yacht')) {
                     $this->_f3->reroute('/finalize');
-                }
+                }*/
+
+
 
                 $this->_f3->reroute('/summary');
             }
@@ -123,6 +124,25 @@ class FinalController
 
     public function summary()
     {
+
+        $ship = $_SESSION['ship'];
+
+        echo '<br>';
+        echo '<br>';
+        echo '<br>';
+        //echo '<br>';
+        //var_dump($ship);
+
+        //var_dump($ship->getHyperdrive());
+        //echo 'test';
+
+        //$this->_f3->set('purp',$purpose);
+        $this->_f3->set('col',$ship->getColor());
+        $this->_f3->set('shield',$ship->getShield());
+        $this->_f3->set('gen',$ship->getGenerator());
+        $this->_f3->set('eng',$ship->getEngine());
+        $this->_f3->set('hyper',$ship->getHyperdrive());
+
         if (!isset($_SESSION['username'])) { // must be logged in
             $this->_f3->reroute('/login');
             echo "<script type='text/javascript'>alert('You must be logged in to place an order');</script>";

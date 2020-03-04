@@ -148,6 +148,24 @@ class StarShip{
         $this->_shield = $shield;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getColor()
+    {
+        return $this->_color;
+    }
+
+    /**
+     * @param mixed $color
+     */
+    public function setColor($color)
+    {
+        $this->_color = $color;
+    }
+
+
+
     public function launch()
     {
 

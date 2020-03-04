@@ -1,19 +1,18 @@
 <include href="views/header.html"></include>
 <include href="views/navbar.html"></include>
-<body>
-    <div class="masthead">
+<body class="masthead">
+    <div >
         <div class="row  align-items-center">
             <div class="col-12 text-center">
                 <h1>Thank you for your Order!</h1>
                 <h2>Summary</h2>
-                Name: {{@SESSION['ship']->getName() }}
-                Email:{{@SESSION['starship']->getEmail() }}
-                Engine:
-                Hyperdrive:
-                Generator:
-                Shield:
-                Purpose:
-                Color:
+                Name: Not implemented yet <br>
+                Engine: {{ @eng }} <br>
+                Hyperdrive: {{ @hyper }} <br>
+                Generator: {{ @gen }} <br>
+                Shield: {{ @shield }} <br>
+                Purpose: Not implemented yet <br>
+                Color: {{ @col }} <br>
 
             </div>
         </div>

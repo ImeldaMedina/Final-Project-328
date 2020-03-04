@@ -53,6 +53,11 @@ class FinalController
     public function customShip()
     {
 
+        if (!isset($_SESSION['username'])) { // must be logged in
+            $this->_f3->reroute('/login');
+            echo "<script type='text/javascript'>alert('You must be logged in to place an order');</script>";
+        }
+
         //If form has been submitted, validate
         if($_SERVER['REQUEST_METHOD'] == 'POST') {
             //Get the data from the form
@@ -118,15 +123,27 @@ class FinalController
 
     public function summary()
     {
+        if (!isset($_SESSION['username'])) { // must be logged in
+            $this->_f3->reroute('/login');
+            echo "<script type='text/javascript'>alert('You must be logged in to place an order');</script>";
+        }
+
         $view = new Template();
         echo $view->render('views/summary.html');
-;
     }
 
     public function logout()
     {
         //this will wipe everything
         $_SESSION = array();
-        session_destroy();
+        //session_destroy();
+
+        $view = new Template();
+        echo $view->render('views/home.html');
+
+        echo "<script type='text/javascript'>alert('you have been logged out');</script>";
     }
+
+
+
 }

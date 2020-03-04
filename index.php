@@ -45,20 +45,24 @@ $f3->route('GET /home', function(){
 $f3->route('GET|POST /newUser', function(){
     $GLOBALS['controller']->newUser();
 });
+
 //login page route
 $f3->route('GET|POST /login', function(){
     $GLOBALS['controller']->login();
 });
-$f3->route('GET|POST /customize', function($f3){
-    global $db;
+
+$f3->route('GET|POST /customize', function(){
     $GLOBALS['controller']->customShip();
 });
-//get the results printed
+
+//
 $f3->route('GET|POST /summary', function(){
     $GLOBALS['controller']->summary();
-//this will wipe everything
-    session_destroy();
-    $_SESSION = array();
+});
+
+// this will wipe everything
+$f3->route('GET|POST /logout', function(){
+    $GLOBALS['controller']->logout();
 });
 
 $f3->route('GET /test', function(){

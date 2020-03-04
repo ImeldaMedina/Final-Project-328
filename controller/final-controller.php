@@ -63,6 +63,18 @@ class FinalController
             $engine = $_POST['engine'];
             $hyperdrive = $_POST['hyperdive'];
 
+            if($purpose == 'p-0001'){
+                $ship = new StarShip('testName', $generator, $engine, $hyperdrive, $shielding, $color);
+            } else if ($purpose = 'p-0002') {
+                $ship = new BattleShip('testName', $generator, $engine, $hyperdrive, $shielding, $color);
+            } else if ($purpose = 'p-0003'){
+                $ship = new Liner('testName', $generator, $engine, $hyperdrive, $shielding, $color);
+            } else if ($purpose = 'p-0004'){
+                $ship = new Yacht('testName', $generator, $engine, $hyperdrive, $shielding, $color);
+            } else { // if invalid ship type
+                $this->_f3->reroute('/finalize');
+            }
+
             //Add data to hive
             $this->_f3->set('purp',$purpose);
             $this->_f3->set('col',$color);
@@ -70,18 +82,34 @@ class FinalController
             $this->_f3->set('gen',$generator);
             $this->_f3->set('eng',$engine);
             $this->_f3->set('hyper',$hyperdrive);
+
             //If data is valid
             if(validForm()){
 
                 //write data to session
+
+                $_SESSION['ship'] = $ship;
+
+                /*
                 $_SESSION['purp'] = $purpose;
                 $_SESSION['col'] = $color;
                 $_SESSION['shield'] =$shielding;
                 $_SESSION['gen'] =$generator;
                 $_SESSION['eng'] =$engine;
                 $_SESSION['hyper'] =$hyperdrive;
+                */
                 //redirect to finalize
-                $this->_f3->reroute('/finalize');
+                if(is_a($ship, 'BattleShip')) {
+                    $this->_f3->reroute('/finalize');
+                }
+                if(is_a($ship, 'Liner')) {
+                    $this->_f3->reroute('/finalize');
+                }
+                if(is_a($ship, 'Yacht')) {
+                    $this->_f3->reroute('/finalize');
+                }
+
+                $this->_f3->reroute('/summary');
             }
         }
         $view = new Template();
@@ -92,8 +120,13 @@ class FinalController
     {
         $view = new Template();
         echo $view->render('views/summary.html');
+;
+    }
+
+    public function logout()
+    {
         //this will wipe everything
-        session_destroy();
         $_SESSION = array();
+        session_destroy();
     }
 }

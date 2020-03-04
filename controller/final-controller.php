@@ -49,6 +49,7 @@ class FinalController
         $view = new Template();
         echo $view->render('views/login.html');
     }
+
     public function customShip()
     {
 
@@ -86,6 +87,7 @@ class FinalController
         $view = new Template();
         echo $view->render('views/customize.html');
     }
+
     public function summary()
     {
         $view = new Template();

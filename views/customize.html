@@ -2,129 +2,147 @@
 <include href="views/navbar.html"></include>
 <link rel="stylesheet" type="text/css" href="styles/customize.css">
 <body>
+<div class="masthead">
+        <div class="container h-100">
+            <div class="row h-100 align-items-center">
+                <div class="col-12 text-center">
+                    <div class="container align-items-center" id ='contain'>
+                        <form id="main" method="post" action="#">
+                            <h1>Customize</h1>
 
-<div class="container align-items-center" id ='contain'>
-    <form id="main" method="post" action="#">
-        <h1>Customize</h1>
+                            <fieldset class ='form-group'>
+                                <legend>Engine Components</legend>
+                                <!-- Engine Components -->
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label for="engine">Engine:</label>
+                                        <select id="engine">
+                                            <option value="none">-- Select Engine --</option>
+                                            <repeat group="{{ @engines }}"
+                                                    value="{{ @engine }}">
+                                                <option value="{{ @engine[engine_id] }}"
 
-        <fieldset class ='form-group'>
-            <legend>Engine Components</legend>
-            <!-- Engine Components -->
-            <div class="form-row">
-                <div class="form-group col-md-6">
-                    <label for="engine">Engine:</label>
-                    <select id="engine">
-                        <option value="none">-- Select Engine --</option>
-                        <repeat group="{{ @engines }}"
-                                value="{{ @engine }}">
-                            <option value="{{ @engine[engine_id] }}"
+                                                <check if="{{ @eng == @engine[engine_id] }}">
+                                                    selected="selected"
+                                                </check>
+                                                >{{ @engine[engine_name] }}
+                                                </option>
+                                            </repeat>
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="hyperdrive">Hyperdrive:</label>
+                                        <select id="hyperdrive">
+                                            <option value="none">-- Select Hyperdrive --</option>
+                                            <repeat group="{{ @hyperdrives }}"
+                                                    value="{{ @hyperdrive }}">
+                                                <option value="{{ @hyperdrive[hperdrive_id] }}"
 
-                            <check if="{{ @eng == @engine[engine_id] }}">
-                                selected="selected"
-                            </check>
-                            >{{ @engine[engine_name] }}
-                            </option>
-                        </repeat>
-                    </select>
-                </div>
-                <div class="form-group col-md-6">
-                    <label for="hyperdrive">Hyperdrive:</label>
-                    <select id="hyperdrive">
-                        <option value="none">-- Select Hyperdrive --</option>
-                        <repeat group="{{ @hyperdrives }}"
-                                value="{{ @hyperdrive }}">
-                            <option value="{{ @hyperdrive[hperdrive_id] }}"
+                                                <check if="{{ @hyper == @hyperdrive[hyperdrive_id] }}">
+                                                    selected="selected"
+                                                </check>
+                                                >{{ @hyperdrive[hyperdrive_name] }}
+                                                </option>
+                                            </repeat>
+                                        </select>
+                                    </div>
+                                </div>
+                            </fieldset>
+                            <fieldset class ='form-group'>
+                                <legend>Utilities</legend>
+                                <!--    Utility  -->
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label for="generator">Generators:</label>
+                                        <select id="generator">
+                                            <option value="none">-- Please select one --</option>
+                                            <repeat group="{{ @generators }}"
+                                                    value="{{ @generator }}">
+                                                <option value="{{ @generator[generator_id] }}"
 
-                            <check if="{{ @hyper == @hyperdrive[hyperdrive_id] }}">
-                                selected="selected"
-                            </check>
-                            >{{ @hyperdrive[hyperdrive_name] }}
-                            </option>
-                        </repeat>
-                    </select>
+                                                <check if="{{ @gen == @generator[generator_id] }}">
+                                                    selected="selected"
+                                                </check>
+                                                >{{ @generator[generator_name] }}
+                                                </option>
+                                            </repeat>
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="shielding">Shields:</label>
+                                        <select id="shielding">
+                                            <label for="generator">Generators:</label>
+                                            <option value="none">-- Please select one --</option>
+                                            <repeat group="{{ @shieldings }}"
+                                                    value="{{ @shielding }}">
+                                                <option value="{{ @shielding[shield_id] }}"
+
+                                                <check if="{{ @shield == @shielding[shield_id] }}">
+                                                    selected="selected"
+                                                </check>
+                                                >{{ @shielding[shield_name] }}
+                                                </option>
+                                            </repeat>
+                                        </select>
+                                    </div>
+                                </div>
+                            </fieldset>
+
+
+                            <!--    Purpose -->
+                            <fieldset class ='form-group'>
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label for="purpose">Purpose:</label>
+                                        <select id="purpose" class>
+                                            <option value="none">-- Purpose --</option>
+                                            <repeat group="{{ @purposes }}"
+                                                    value="{{ @purpose }}">
+                                                <option value="{{ @purpose[purpose_id] }}"
+
+                                                <check if="{{ @purp == @purpose[purpose_id] }}">
+                                                    selected="selected"
+                                                </check>
+                                                >{{ @purpose[purpose_name] }}
+                                                </option>
+                                            </repeat>
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="color">Color:</label>
+                                        <select id="color">
+                                            <option value="none">-- Select a color --</option>
+                                            <repeat group="{{ @colors }}"
+                                                    value="{{ @color }}">
+                                                <option value="{{ @color }}"
+
+                                                <check if="{{ @col == @color }}">
+                                                    selected="selected"
+                                                </check>
+                                                >{{ @color }}
+                                                </option>
+                                            </repeat>
+                                        </select>
+                                    </div>
+                                </div>
+                            <!--    purpose drop down -->
+                            </fieldset>
+                        </form>
+
+                        <div class="row h-25 align-items-center">
+                            <div class="col-12 text-center">
+                                <button type="submit" href="summary">Check Out</button>
+                            </div>
+                        </div>
+                        <div class="row h-25 align-items-center">
+                            <div class="col-12 text-center">
+                                <img id= "galaxy" src="images/galaxy.jpeg" class="img-fluid max-width: 100%; img-thumbnail  " alt="Responsive image">
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </fieldset>
-        <fieldset class ='form-group'>
-            <legend>Utilities</legend>
-            <!--    Utility  -->
-            <div class="form-row">
-                <div class="form-group col-md-6">
-                    <label for="generator">Generators:</label>
-                    <select id="generator">
-                        <option value="none">-- Please select one --</option>
-                        <repeat group="{{ @generators }}"
-                                value="{{ @generator }}">
-                            <option value="{{ @generator[generator_id] }}"
-
-                            <check if="{{ @gen == @generator[generator_id] }}">
-                                selected="selected"
-                            </check>
-                            >{{ @generator[generator_name] }}
-                            </option>
-                        </repeat>
-                    </select>
-                </div>
-                <div class="form-group col-md-6">
-                    <label for="shielding">Shields:</label>
-                    <select id="shielding">
-                        <label for="generator">Generators:</label>
-                        <option value="none">-- Please select one --</option>
-                        <repeat group="{{ @shieldings }}"
-                                value="{{ @shielding }}">
-                            <option value="{{ @shielding[shield_id] }}"
-
-                            <check if="{{ @shield == @shielding[shield_id] }}">
-                                selected="selected"
-                            </check>
-                            >{{ @shielding[shield_name] }}
-                            </option>
-                        </repeat>
-                    </select>
-                </div>
-            </div>
-        </fieldset>
-
-
-        <!--    Purpose -->
-        <fieldset class ='form-group'>
-            <div class="form-row">
-                <div class="form-group col-md-6">
-                    <label for="purpose">Purpose:</label>
-                    <select id="purpose" class>
-                        <option value="none">-- Purpose --</option>
-                        <repeat group="{{ @purposes }}"
-                                value="{{ @purpose }}">
-                            <option value="{{ @purpose[purpose_id] }}"
-
-                            <check if="{{ @purp == @purpose[purpose_id] }}">
-                                selected="selected"
-                            </check>
-                            >{{ @purpose[purpose_name] }}
-                            </option>
-                        </repeat>
-                    </select>
-                </div>
-                <div class="form-group col-md-6">
-                    <label for="color">Color:</label>
-                    <select id="color">
-                        <option value="none">-- Select a color --</option>
-                        <repeat group="{{ @colors }}"
-                                value="{{ @color }}">
-                            <option value="{{ @color }}"
-
-                            <check if="{{ @col == @color }}">
-                                selected="selected"
-                            </check>
-                            >{{ @color }}
-                            </option>
-                        </repeat>
-                    </select>
-                </div>
-            </div>
-        <!--    purpose drop down -->
-        </fieldset>
-    </form>
+        </div>
 </div>
 
 

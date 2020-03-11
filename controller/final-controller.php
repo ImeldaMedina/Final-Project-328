@@ -10,7 +10,7 @@ class FinalController
     {
         $this->_f3 = $f3;
         $this->_db = $db;
-        $this->_val = new FinalValidation();
+        $this->_val = new FinalValidation($f3);
     }
 
     public function home()
@@ -20,6 +20,40 @@ class FinalController
     }
     public function newUser()
     {
+        if (isset($_SESSION['username'])) {
+            echo "<script> confirm('you are already logged in!') </script>";
+            $this->_f3->reroute($this->_f3->get('SERVER.HTTP_REFERER'));
+        }
+
+        if($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+
+            $fname = $_POST['fname'];
+            $lname = $_POST['lname'];
+            $email = $_POST['email'];
+            $username = $_POST['username'];
+            $password= $_POST['password'];
+
+            $newUser = new NewUser($fname, $lname, $email, $username, $password);
+
+            //echo $_SESSION['username'];
+
+            if ($this->_val->validForm()) { // if validated
+
+                //$this->_db->newUser($newUser);
+
+                //echo 'no';
+                $this->_f3->reroute('/login');
+
+
+
+
+            } else {
+                //Store login name in a session variable
+                $this->_f3->set('newUser', $_POST);
+            }
+        }
+
         $view = new Template();
         echo $view->render('views/new-user.html');
     }
@@ -37,11 +71,18 @@ class FinalController
 
             //echo $_SESSION['username'];
 
-            if (!$this->_db->validateLogin($username, $password)) { // if not validated
-                echo 'no';
+            $id = $this->_db->validateLogin($username, $password)['id'];
+
+            if (!$id) { // if not validated
+                //echo 'no';
             } else {
                 $_SESSION['username'] = $username;
-                //Store login name in a session variable
+
+                $name = $this->_db->getName($id);
+                $name = $name['fname'].' '.$name['lname'];
+                $_SESSION['name'] = $name;
+
+
                 $this->_f3->reroute('/home');
                 //Redirect to page 1
             }
@@ -101,7 +142,6 @@ class FinalController
                 $_SESSION['hyper'] =$hyperdrive;
 
                 //redirect to finalize
-
 /*
                 if(is_a($ship, 'BattleShip')) {
                     $this->_f3->reroute('/finalize');

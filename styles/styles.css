@@ -53,6 +53,7 @@ img{
     /*display: block;*/
     /*top: 19em;*/
     width: 75%;
+    margin: auto;
     font-size: 3em;
     animation-duration: 10s;
     animation-timing-function: ease-in-out;
@@ -66,6 +67,11 @@ img{
 #text2{
     animation-name: anim-2;
 }
+
+#text3{
+    animation-name: anim-3;
+}
+
 @keyframes anim-1 {
     0%, 8.3% { left: -100%; opacity: 0; }
     8.3%,25% { left: 10%; opacity: 1; }
@@ -75,4 +81,9 @@ img{
     0%, 33.33% { left: -100%; opacity: 0; }
     41.63%, 58.29% { left: 10%; opacity: 1; }
     66.66%, 100% { left: 110%; opacity: 0; }
+}
+@keyframes anim-3 {
+    0%, 66.66% { left: -100%; opacity: 0; }
+    74.96%, 91.62% { left: 10%; opacity: 1; }
+    100% { left: 110%; opacity: 0; }
 }

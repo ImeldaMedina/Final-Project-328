@@ -97,7 +97,7 @@ class FinalDatabase
 
     function validateLogin($username, $password)
     {
-        $sql = "SELECT username, password from login where username = :username and password = :password";
+        $sql = "SELECT username, password, id from login where username = :username and password = :password";
 
         //2. Prepare the statement
         $statement = $this->_dbh->prepare($sql);
@@ -112,5 +112,86 @@ class FinalDatabase
         //5. Get the result
         $result = $statement->fetch(PDO::FETCH_ASSOC);
         return $result;
+    }
+
+    function getName($id)
+    {
+        $sql = "SELECT fname, lname from users where id = :id";
+
+        //2. Prepare the statement
+        $statement = $this->_dbh->prepare($sql);
+
+        //3. Bind the parameters
+        $statement->bindParam(':id', $id);
+
+        //4. Execute the statement
+        $statement->execute();
+
+        //5. Get the result
+        $result = $statement->fetch(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
+
+    public function newUser($user)
+    {
+        $username = $user->getUsername();
+        $password = $user->getPassword();
+
+
+        //insert into login first
+
+        //1. Define the query
+
+        $sql = "insert into login values (null, FALSE, :username , :password, now(), now());";
+
+        //2. Prepare the statement
+        $statement = $this->_dbh->prepare($sql);
+
+        //3. Bind the parameters
+        $statement->bindParam(':username', $username);
+        $statement->bindParam(':password', $password);
+
+
+        //4. Execute the statement
+        $statement->execute();
+
+        //5. Get the result
+        $userId = $this->_dbh->lastInsertId();
+
+        $this->newUserLogin($user, $userId);
+
+    }
+
+    private function newUserLogin($user, $userId)
+    {
+        $fname = $user->getFname();
+        $lname = $user->getLname();
+        $email = $user->getEmail();
+
+
+        //insert into user next
+
+        //1. Define the query
+
+        $sql = "insert into users values (:userId, :fname , :lname, :email);";
+
+        //2. Prepare the statement
+        $statement = $this->_dbh->prepare($sql);
+
+        //3. Bind the parameters
+        $statement->bindParam(':userId', $userId);
+        $statement->bindParam(':fname', $fname);
+        $statement->bindParam(':lname', $lname);
+        $statement->bindParam(':email', $email);
+
+
+
+        //4. Execute the statement
+        $statement->execute();
+
+        //5. Get the result
+        $userId = $this->_dbh->lastInsertId();
+
     }
 }

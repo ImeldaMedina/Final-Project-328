@@ -4,6 +4,12 @@
             <div class="col-12 text-center">
                 <h1 id="text1"  class="font-weight-light text-light">Welcome to Interstellar Engineering</h1>
                 <h1 id="text2" class="font-weight-light text-light">  Where Everything is Possible!</h1>
+                <h1 id="text3" class="font-weight-light text-light">  Welcome,
+                    <check if="{{ @_SESSION[name] }}">
+                        <true>{{ @_SESSION[name] }}</true>
+                        <false>{{ @guest }}</false>
+                    </check>
+                    !</h1>
             </div>
         </div>
     </div>

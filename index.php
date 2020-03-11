@@ -29,7 +29,8 @@ $f3->set('shieldings', $db->getModules("Shield"));
 $f3->set('generators', $db->getModules("Generator"));
 $f3->set('engines', $db->getModules("Engine"));
 $f3->set('hyperdrives', $db->getModules("Hyperdrive"));
-//define a default route
+
+$f3->set('guest', 'Guest');
 
 //Instantiate controller object
 $controller= new FinalController($f3, $db);
@@ -69,6 +70,7 @@ $f3->route('GET|POST /logout', function(){
 $f3->route('GET /test', function(){
     global $db;
     echo '<pre>';
+    var_dump ($db->getName(4));
     //var_dump($db->validateLogin("Admin", "dm1n"));
 
     echo '</pre>';

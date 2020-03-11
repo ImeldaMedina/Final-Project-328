@@ -18,11 +18,10 @@ CREATE TABLE users(
 id int(10) NOT NULL primary key,
 fname varchar(55) NOT NULL,
 lname varchar(120) NOT NULL,
-email varchar(255) NOT NULL,
-phone VARCHAR(20) NOT NULL
+email varchar(255) NOT NULL
 );
 
-insert into users values (1, 'Admin', 'I. Strator', 'Admin@mail.com', '(142) 132-1231');
+insert into users values (1, 'Admin', 'I. Strator', 'Admin@mail.com');
 
 -- https://stackoverflow.com/questions/8710982/md5-password-retrieving
 

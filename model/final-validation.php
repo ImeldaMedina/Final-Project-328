@@ -2,11 +2,13 @@
 class FinalValidation
 {
     private $_f3;
+    private $_db;
 
 
-    public function __construct($f3)
+    public function __construct($f3, $db)
     {
         $this->_f3 = $f3;
+        $this->_db = $db;
     }
 
 
@@ -133,15 +135,7 @@ class FinalValidation
     {
         $isValid = true;
 
-        $this->validInput('purpose', $_POST['purpose']);
 
-
-        $isValid += $this->validPurpose($_POST['purpose']);
-        $isValid += $this->validShield($_POST['shielding']);
-        $isValid += $this->validGenerator($_POST['generator']);
-        $isValid += $this->validEngine($_POST['engine']);
-        $isValid += $this->validHyperdrive($_POST['hyperdrive']);
-        $isValid += $this->validRepPassword($_POST['password'], $_POST['rep-password']);
         //If the $errors array is empty, then we have valid data
 //        var_dump($this->_errors);
         return $isValid;

@@ -40,9 +40,9 @@
                     <check if="{{ @errors['username'] }}">
                         <span class="err">{{ @errors['username'] }}</span><br><br>
                     </check>
-
+                    <div id = 'isTaken'></div>
                     <label>
-                        <input id="password" type="password" name="password"  placeholder="password"
+                        <input id="password" type="password" name="password"  placeholder="Password"
                                value="{{ @newUser['password'] }}"><br>
                     </label><br>
                     <check if="{{ @errors['password'] }}">
@@ -71,5 +71,7 @@
 <!--            </div>-->
 <!--        </section>-->
 </form>
+
+
 </body>
 </html>

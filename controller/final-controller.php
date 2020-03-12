@@ -10,7 +10,7 @@ class FinalController
     {
         $this->_f3 = $f3;
         $this->_db = $db;
-        $this->_val = new FinalValidation($f3);
+        $this->_val = new FinalValidation($f3, $db);
     }
 
     public function home()
@@ -42,7 +42,7 @@ class FinalController
 
                 $this->_db->newUser($newUser);
 
-                $_SESSION['username'] = $username;
+                $_SESSION['name'] = $fname.' '.$lname;
 
                 //echo 'no';
                 $this->_f3->reroute('/home');
@@ -61,7 +61,7 @@ class FinalController
     {
 
         if (isset($_SESSION['username'])) {
-            $this->_f3->reroute('/home');
+            $this->_f3->reroute($this->_f3->get('SERVER.HTTP_REFERER'));
         }
 
         if($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -101,13 +101,36 @@ class FinalController
 
         //If form has been submitted, validate
         if($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+            $isValid = true;
             //Get the data from the form
             $purpose = $_POST['purpose'];
+            if(!$this->_db->getSpecificModule('Purpose', $purpose)){
+                $this->_f3->set("errors['purpose']", "What is this ship used for?");
+                $isValid = false;
+            }
+
             $color= $_POST['color'];
             $shielding = $_POST['shielding'];
+            if(!$this->_db->getSpecificModule('Shield', $shielding)){
+                $this->_f3->set("errors['shielding']", "a shielding module is required");
+                $isValid = false;
+            }
             $generator = $_POST['generator'];
+            if(!$this->_db->getSpecificModule('Generator', $generator)){
+                $this->_f3->set("errors['generator']", "a ship needs power!");
+                $isValid = false;
+            }
             $engine = $_POST['engine'];
+            if(!$this->_db->getSpecificModule('Engine', $engine)){
+                $this->_f3->set("errors['engine']", "a ship is rather useless without this");
+                $isValid = false;
+            }
             $hyperdrive = $_POST['hyperdrive'];
+            if(!$this->_db->getSpecificModule('Hyperdrive', $hyperdrive)){
+                $this->_f3->set("errors['hyperdrive']", "it will take a long time to cross stars without this");
+                $isValid = false;
+            }
 
             if($purpose == 'p-0001'){
                 $ship = new StarShip('testName', $generator, $engine, $hyperdrive, $shielding, $color);
@@ -127,12 +150,11 @@ class FinalController
 
 
             //If data is valid
-            if($this->_val->validFormCustomize() ){
+            if($isValid){
 
                 //write data to session
 
                 $_SESSION['ship'] = $ship;
-
 
                 $_SESSION['purp'] = $purpose;
                 $_SESSION['col'] = $color;
@@ -177,11 +199,22 @@ class FinalController
         //echo 'test';
 
         //$this->_f3->set('purp',$purpose);
+
         $this->_f3->set('col',$ship->getColor());
-        $this->_f3->set('shield',$ship->getShield());
-        $this->_f3->set('gen',$ship->getGenerator());
-        $this->_f3->set('eng',$ship->getEngine());
-        $this->_f3->set('hyper',$ship->getHyperdrive());
+        $this->_f3->set('shield',$this->_db->getSpecificModule('Shield', $ship->getShield())['shield_name']);
+        $this->_f3->set('gen', $this->_db->getSpecificModule('Generator', $ship->getGenerator())['generator_name']);
+        $this->_f3->set('eng',$this->_db->getSpecificModule('Engine', $ship->getEngine())['engine_name']);
+        $this->_f3->set('hyper',$this->_db->getSpecificModule('Hyperdrive', $ship->getHyperdrive())['hyperdrive_name']);
+
+        if(is_a($ship, 'BattleShip')) {
+            $this->_f3->set('purp', 'Battleship');
+        } elseif(is_a($ship, 'Liner')) {
+            $this->_f3->set('purp', 'Passenger Liner');
+        } elseif(is_a($ship, 'Yacht')) {
+            $this->_f3->set('purp', 'Space Yacht');
+        } else {
+            $this->_f3->set('purp', 'Multipurpose');
+        }
 
         if (!isset($_SESSION['username'])) { // must be logged in
             $this->_f3->reroute('/login');

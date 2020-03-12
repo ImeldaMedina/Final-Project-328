@@ -75,6 +75,8 @@ $f3->route('GET /test', function(){
 
     echo '</pre>';
 
+    echo ( $db->getSpecificModule('Generator', 'g-0003-B')['generator_name']);
+
     echo $_SESSION['username'];
 });
 //Run F3

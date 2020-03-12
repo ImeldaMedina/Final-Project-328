@@ -17,6 +17,11 @@ button{
     font-size: 25px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
+
+.err {
+    color: red;
+}
+
 .fa {
     padding: 20px;
     font-size: 30px;
@@ -141,9 +146,10 @@ input[type=password] {
     height: auto;
 }
 .text-light-alt{
-    position: absolute;
+    position: relative;
     width: 100%;
     width: 75%;
+    padding-top: 40px;
     margin: auto;
     font-size: 1.8em;
     /*animation-duration: 10s;*/

@@ -42,8 +42,10 @@ class FinalController
 
                 $this->_db->newUser($newUser);
 
+                $_SESSION['username'] = $username;
+
                 //echo 'no';
-                $this->_f3->reroute('/login');
+                $this->_f3->reroute('/home');
 
 
             } else {
@@ -125,7 +127,7 @@ class FinalController
 
 
             //If data is valid
-            if(true /*$this->_val->validFormCustomize() */ ){
+            if($this->_val->validFormCustomize() ){
 
                 //write data to session
 

@@ -127,4 +127,24 @@ class FinalValidation
         }
         return true;
     }
+
+
+    public function validFormCustomize()
+    {
+        $isValid = true;
+
+        $this->validInput('purpose', $_POST['purpose']);
+
+
+        $isValid += $this->validPurpose($_POST['purpose']);
+        $isValid += $this->validShield($_POST['shielding']);
+        $isValid += $this->validGenerator($_POST['generator']);
+        $isValid += $this->validEngine($_POST['engine']);
+        $isValid += $this->validHyperdrive($_POST['hyperdrive']);
+        $isValid += $this->validRepPassword($_POST['password'], $_POST['rep-password']);
+        //If the $errors array is empty, then we have valid data
+//        var_dump($this->_errors);
+        return $isValid;
+    }
+
 }

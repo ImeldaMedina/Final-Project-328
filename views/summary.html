@@ -1,24 +1,7 @@
 <include href="views/header.html"></include>
 <include href="views/navbar.html"></include>
 <body class="masthead">
-    <div>
-        <div class="jumbotron" >
-            <div class="container h-100">
-                <div class="row h-100 align-items-center">
-                    <div class="col-12 text-center">
-                        <h1 id="text1"  class="font-weight-light text-light-alt">Thank you for your Order!</h1>
-                        <h1 id="text2" class="font-weight-light text-light-alt">  Summary</h1>
-                        <h1 id="text3" class="font-weight-light text-light-alt">  Welcome,
-                            <check if="{{ @_SESSION[name] }}">
-                                <true>{{ @_SESSION[name] }}</true>
-                                <false>{{ @guest }}</false>
-                            </check>
-                            !
-                        </h1>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <div >
         <div class="row  align-items-center text-light">
             <div class="col-12 text-center">
                 <h1>Thank you for your Order!</h1>

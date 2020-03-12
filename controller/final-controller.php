@@ -40,12 +40,10 @@ class FinalController
 
             if ($this->_val->validForm()) { // if validated
 
-                //$this->_db->newUser($newUser);
+                $this->_db->newUser($newUser);
 
                 //echo 'no';
                 $this->_f3->reroute('/login');
-
-
 
 
             } else {

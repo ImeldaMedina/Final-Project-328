@@ -8,25 +8,55 @@
         <div class="container h-100">
             <div class="row h-100 align-items-center">
                 <div class="col-12 text-center">
-                    <h1 class="font-weight-light">Sign in to get going</h1>
+                    <h1 class="font-weight-light">Sign in to get going!</h1>
                     <label>
-                        <input id="fname" type="text" name="fname"  placeholder="First Name"><br>
+                        <input id="fname" type="text" name="fname"  placeholder="First Name"
+                               value="{{ @newUser['fname'] }}"><br>
                     </label><br>
+                    <check if="{{ @errors['fname'] }}">
+                        <span class="err">{{ @errors['fname'] }}</span><br><br>
+                    </check>
+
                     <label>
-                        <input id="lname" type="text" name="lname"  placeholder="Last Name"><br>
+                        <input id="lname" type="text" name="lname"  placeholder="Last Name"
+                               value="{{ @newUser['lname'] }}"><br>
                     </label><br>
+                    <check if="{{ @errors['lname'] }}">
+                        <span class="err">{{ @errors['lname'] }}</span><br><br>
+                    </check>
+
                     <label>
-                        <input id="email" type="text" name="email"  placeholder="Email"><br>
+                        <input id="email" type="text" name="email"  placeholder="Email"
+                               value="{{ @newUser['email'] }}"><br>
                     </label><br>
+                    <check if="{{ @errors['email'] }}">
+                        <span class="err">{{ @errors['email'] }}</span><br><br>
+                    </check>
+
                     <label>
-                        <input id="username" type="text" name="username"  placeholder="Username"><br>
+                        <input id="username" type="text" name="username"  placeholder="Username"
+                               value="{{ @newUser['username'] }}"><br>
                     </label><br>
+                    <check if="{{ @errors['username'] }}">
+                        <span class="err">{{ @errors['username'] }}</span><br><br>
+                    </check>
+
                     <label>
-                        <input id="password" type="password" name="password"  placeholder="password"><br>
+                        <input id="password" type="password" name="password"  placeholder="password"
+                               value="{{ @newUser['password'] }}"><br>
                     </label><br>
+                    <check if="{{ @errors['password'] }}">
+                        <span class="err">{{ @errors['password'] }}</span><br><br>
+                    </check>
+
                     <label>
-                        <input id="rep-password" type="password" name="rep-password"  placeholder=" Repeat Password"><br>
+                        <input id="rep-password" type="password" name="rep-password"  placeholder=" Repeat Password"
+                               value="{{ @newUser['rep-password'] }}"><br>
                     </label><br>
+                    <check if="{{ @errors['misMatched'] }}">
+                        <span class="err">{{ @errors['misMatched'] }}</span><br><br>
+                    </check>
+
                     <input class="p-2 mb-auto bg-dark text-white" type="submit" name="submit" value="Sign in">
                 </div>
             </div>

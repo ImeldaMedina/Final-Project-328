@@ -14,12 +14,8 @@ button{
 .carousel-inner img {
     margin: auto;
 }
-img{
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    width: 500px;
-    height: 450px;
-    margin-bottom: 40px;
-
+.font-weight-light{
+    color: white;
 }
 .footer {
     position: fixed;
@@ -29,6 +25,28 @@ img{
     background-color: black;
     color: white;
     text-align: center;
+}
+.lead{
+    color:white;
+}
+img{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    width: 500px;
+    height: 450px;
+    margin-bottom: 40px;
+
+}
+input[type=text] {
+     background: transparent;
+     border: none;
+     border-bottom: 1px solid #000000;
+    color: white;
+ }
+input[type=password] {
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid #000000;
+    color: white;
 }
 .jumbotron {
     background-image: url("../images/images.jpeg");
@@ -56,12 +74,9 @@ img{
     position: absolute;
     /*display: block;*/
     /*top: 19em;*/
-<<<<<<< HEAD
     width: 100%;
-=======
     width: 75%;
     margin: auto;
->>>>>>> 493b1d763c1f8a978949c0a589d1b59fa8f9739e
     font-size: 3em;
     animation-duration: 10s;
     animation-timing-function: ease-in-out;

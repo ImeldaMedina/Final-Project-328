@@ -1,0 +1,73 @@
+<include href="views/header.html"></include>
+<include href="views/navbar.html"></include>
+<body class="masthead">
+    <include href="views/jumbotron-admin.html"></include>
+
+    <div id="ships" class="bg-secondary center-block float-left p-3 text-center">
+        <h2>All Ordered Ships</h2>
+        <table id="ship-table" class="display">
+            <thead>
+            <tr>
+                <th>Ship ID</th>
+                <th>User ID</th>
+                <th>Ship Name</th>
+                <th>Generator</th>
+                <th>Shield</th>
+                <th>Engine</th>
+                <th>Hyperdrive</th>
+                <th>Color</th>
+                <th>Purpose</th>
+                <th>Price</th>
+                <th>Power</th>
+            </tr>
+            </thead>
+            <tbody>
+            <repeat group="{{ @ships }}"
+                    value="{{ @ship }}">
+                <tr>
+                    <td>{{@ship[id]}}</td>
+                    <td>{{@ship[user_id]}}</td>
+                    <td>Ship Name</td>
+                    <td>{{@ship[generator]}}</td>
+                    <td>{{@ship[shield]}}</td>
+                    <td>{{@ship[engine]}}</td>
+                    <td>{{@ship[hyperdrive]}}</td>
+                    <td>{{@ship[color]}}</td>
+                    <td>{{@ship[purpose]}}</td>
+                    <td>{{@ship[price]}}</td>
+                    <td>{{@ship[power]}}</td>
+                </tr>
+            </repeat>
+            </tbody>
+        </table>
+    </div>
+
+    <div id="ships" class="bg-secondary center-block float-right p-3 text-center">
+        <h2> All Users </h2>
+        <table id="user-table" class="display">
+            <thead>
+            <tr>
+                <th>User ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+            </tr>
+            </thead>
+            <tbody>
+            <repeat group="{{ @users }}"
+                    value="{{ @user }}">
+                <tr>
+                    <td>{{@user[id]}}</td>
+                    <td>{{@user[fname]}}</td>
+                    <td>{{@user[lname]}}</td>
+                    <td>{{@user[email]}}</td>
+
+                </tr>
+            </repeat>
+            </tbody>
+        </table>
+    </div>
+
+</body>
+<footer class="footer mt-lg-4">Medina and Maret Interstellar Engineering</footer>
+</html>

@@ -39,9 +39,10 @@ class FinalController
 
             if ($this->_val->validForm()) { // if validated
                 $this->_db->newUser($newUser);
+                $_SESSION['username'] = $username;
                 $_SESSION['name'] = $fname.' '.$lname;
                 //echo 'no';
-                $this->_f3->reroute('/home');
+                $this->_f3->reroute('/customize');
 
             } else {
                 //Store login name in a session variable
@@ -64,6 +65,16 @@ class FinalController
 
             $id = $this->_db->validateLogin($username, $password)['id'];
 
+            $_SESSION['userID'] = $id;
+
+            // is this an admin?
+            $isAdmin = $this->_db->isAdmin($id)['is_admin'];
+            if($isAdmin){
+                $_SESSION['isAdmin'] = 'yes'; // activate admin mode
+            }
+
+
+
             if (!$id) { // if not validated
                 //echo 'no';
             } else {
@@ -83,10 +94,10 @@ class FinalController
 
     public function customShip()
     {
-//        if (!isset($_SESSION['username'])) { // must be logged in
-//            $this->_f3->reroute('/login');
-//            echo "<script type='text/javascript'>alert('You must be logged in to place an order');</script>";
-//        }
+        if (!isset($_SESSION['username'])) { // must be logged in
+            $this->_f3->reroute('/login');
+            echo "<script type='text/javascript'>alert('You must be logged in to place an order');</script>";
+        }
         //If form has been submitted, validate
         if($_SERVER['REQUEST_METHOD'] == 'POST') {
             $isValid = true;
@@ -118,17 +129,21 @@ class FinalController
                 $isValid = false;
             }
 
+            $power = $_POST['power'];
+            $price = $_POST['price'];
+
             if($purpose == 'p-0001'){
-                $ship = new StarShip('testName', $generator, $engine, $hyperdrive, $shielding, $color);
+                $ship = new StarShip('testName', $generator, $engine, $hyperdrive, $shielding, $color, $power, $price);
             } else if ($purpose = 'p-0002') {
-                $ship = new BattleShip('testName', $generator, $engine, $hyperdrive, $shielding, $color);
+                $ship = new BattleShip('testName', $generator, $engine, $hyperdrive, $shielding, $color, $power, $price);
             } else if ($purpose = 'p-0003'){
-                $ship = new Liner('testName', $generator, $engine, $hyperdrive, $shielding, $color);
+                $ship = new Liner('testName', $generator, $engine, $hyperdrive, $shielding, $color, $power, $price);
             } else if ($purpose = 'p-0004'){
-                $ship = new Yacht('testName', $generator, $engine, $hyperdrive, $shielding, $color);
+                $ship = new Yacht('testName', $generator, $engine, $hyperdrive, $shielding, $color, $power, $price);
             } else { // if invalid ship type
-                $this->_f3->reroute('/finalize');
+                $this->_f3->reroute('/customize');
             }
+
 
             //Add data to hive
             $this->_f3->set('ship', $ship);
@@ -143,6 +158,8 @@ class FinalController
                 $_SESSION['gen'] =$generator;
                 $_SESSION['eng'] =$engine;
                 $_SESSION['hyper'] =$hyperdrive;
+                $_SESSION['pow'] =$power;
+                $_SESSION['pri'] =$price;
 
                 $this->_f3->reroute('/summary');
             }
@@ -154,8 +171,6 @@ class FinalController
 
     public function summary()
     {
-
-
         $ship = $_SESSION['ship'];
 
         $this->_f3->set('col',$ship->getColor());
@@ -189,6 +204,7 @@ class FinalController
             echo "<script type='text/javascript'>alert('You must be logged in to place an order');</script>";
         }
 
+        $this->_db->addShip($ship);
 
         $view = new Template();
         echo $view->render('views/summary.html');
@@ -207,6 +223,30 @@ class FinalController
 
 
         echo "<script type='text/javascript'>alert('you have been logged out');</script>";
+    }
+
+
+    public function admin()
+    {
+
+        if (!isset($_SESSION['username'])) { // must be logged in
+            $this->_f3->reroute('/home');
+        }
+
+        if (!isset($_SESSION['isAdmin'])) { // must be admin
+            $this->_f3->reroute('/home');
+        }
+
+        $ships = $this->_db->getShips();
+        $users = $this->_db->getUsers();
+
+
+        $this->_f3->set('ships', $ships);
+        $this->_f3->set('users', $users);
+
+        $view = new Template();
+        echo $view->render('views/admin.html');
+
     }
 
 

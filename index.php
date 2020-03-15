@@ -67,10 +67,18 @@ $f3->route('GET|POST /logout', function(){
     $GLOBALS['controller']->logout();
 });
 
+// this will wipe everything
+$f3->route('GET /admin', function(){
+    $GLOBALS['controller']->admin();
+});
+
 $f3->route('GET /test', function(){
     global $db;
+
+    $ships = $db->getShips();
+
     echo '<pre>';
-    var_dump ($db->getName(4));
+    var_dump($ships);
     //var_dump($db->validateLogin("Admin", "dm1n"));
 
     echo '</pre>';

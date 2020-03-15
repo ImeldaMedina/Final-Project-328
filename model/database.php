@@ -132,6 +132,24 @@ class FinalDatabase
         return $result;
     }
 
+    function isAdmin($id)
+    {
+        $sql = "SELECT is_admin from login where id = :id";
+
+        //2. Prepare the statement
+        $statement = $this->_dbh->prepare($sql);
+
+        //3. Bind the parameters
+        $statement->bindParam(':id', $id);
+
+        //4. Execute the statement
+        $statement->execute();
+
+        //5. Get the result
+        $result = $statement->fetch(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
 
     public function newUser($user)
     {
@@ -193,5 +211,138 @@ class FinalDatabase
         //5. Get the result
         $userId = $this->_dbh->lastInsertId();
 
+    }
+
+    function addShip($ship)
+    {
+        $name = $ship->getName();
+        $gen = $ship->getGenerator();
+        $eng = $ship->getEngine();
+        $hyp = $ship->getHyperdrive();
+        $sld = $ship->getShield();
+        $col = $ship->getColor();
+        $pow = $ship->getPower();
+        $pri = $ship->getPrice();
+        $id = $_SESSION['userID'];
+
+        if(is_a($ship, 'BattleShip')) {
+            $purp = 'p-0002';
+        } elseif(is_a($ship, 'Liner')) {
+            $purp = 'p-0003';
+        } elseif(is_a($ship, 'Yacht')) {
+            $purp = 'p-0004';
+        } else {
+            $purp = 'p-0001';
+        }
+
+        //insert into ships
+
+        //1. Define the query
+
+
+        $sql = "insert into ships values (null, :id, :gen, :sld, :eng, :hyp, :col, :purp, :pri, :pow);";
+
+        //2. Prepare the statement
+        $statement = $this->_dbh->prepare($sql);
+
+        //3. Bind the parameters
+
+
+        $statement->bindParam(':id', $id);
+        $statement->bindParam(':gen', $gen);
+        $statement->bindParam(':sld', $sld);
+        $statement->bindParam(':eng', $eng);
+        $statement->bindParam(':hyp', $hyp);
+        $statement->bindParam(':col', $col);
+        $statement->bindParam(':purp', $purp);
+        $statement->bindParam(':pri', $pri);
+        $statement->bindParam(':pow', $pow);
+
+
+        //4. Execute the statement
+        $statement->execute();
+
+        //5. Get the result
+        $userId = $this->_dbh->lastInsertId();
+
+    }
+
+
+    function getShips()
+    {
+        $sql = "SELECT * FROM ships";
+
+        //2. Prepare the statement
+        $statement = $this->_dbh->prepare($sql);
+
+        //3. Bind the parameters
+
+        //4. Execute the statement
+        $statement->execute();
+
+        //5. Get the result
+        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
+    function getUsers()
+    {
+        $sql = "SELECT * FROM users";
+
+        //2. Prepare the statement
+        $statement = $this->_dbh->prepare($sql);
+
+        //3. Bind the parameters
+
+        //4. Execute the statement
+        $statement->execute();
+
+        //5. Get the result
+        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+
+        return $result;
+    }
+
+    function deleteUser($id)
+    {
+
+        $this->deleteLogin($id);
+
+        $sql = "DELETE FROM users where id = :id";
+
+        //2. Prepare the statement
+        $statement = $this->_dbh->prepare($sql);
+
+        //3. Bind the parameters
+        $statement->bindParam(':id', $id);
+
+        //4. Execute the statement
+        $statement->execute();
+
+        //5. Get the result
+        $result = $statement->fetch(PDO::FETCH_ASSOC);
+
+
+
+        return $result;
+    }
+
+    private function deleteLogin($id)
+    {
+        $sql = "DELETE FROM login where id = :id";
+
+        //2. Prepare the statement
+        $statement = $this->_dbh->prepare($sql);
+
+        //3. Bind the parameters
+        $statement->bindParam(':id', $id);
+
+        //4. Execute the statement
+        $statement->execute();
+
+        //5. Get the result
+        $result = $statement->fetch(PDO::FETCH_ASSOC);
+        return $result;
     }
 }

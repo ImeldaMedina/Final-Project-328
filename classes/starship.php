@@ -5,11 +5,13 @@ class StarShip{
     private $_engine;
     private $_hyperdrive;
     private $_shield;
+    private $_power;
+    private $_price;
 
     private $_description;
     private $_color;
 
-    public function __construct($name, $generator, $engine, $hyperdrive, $shield, $color)
+    public function __construct($name, $generator, $engine, $hyperdrive, $shield, $color, $power, $price)
 
     {
         $this->_name = $name;
@@ -18,6 +20,8 @@ class StarShip{
         $this->_hyperdrive = $hyperdrive;
         $this->_shield = $shield;
         $this->_color = $color;
+        $this->_power = $power;
+        $this->_price = $price;
 
     }
 
@@ -35,37 +39,6 @@ class StarShip{
     public function setName($name)
     {
         $this->_name = $name;
-    }
-    /**
-     * @return mixed
-     */
-    public function getLast()
-    {
-        return $this->_last;
-    }
-
-    /**
-     * @param mixed $last
-     */
-    public function setLast($last)
-    {
-        $this->_last = $last;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getEmail()
-    {
-        return $this->_email;
-    }
-
-    /**
-     * @param mixed $email
-     */
-    public function setEmail($email)
-    {
-        $this->_email = $email;
     }
 
     /**
@@ -155,6 +128,39 @@ class StarShip{
     {
         return $this->_color;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getPower()
+    {
+        return $this->_power;
+    }
+
+    /**
+     * @param mixed $power
+     */
+    public function setPower($power)
+    {
+        $this->_power = $power;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPrice()
+    {
+        return $this->_price;
+    }
+
+    /**
+     * @param mixed $price
+     */
+    public function setPrice($price)
+    {
+        $this->_price = $price;
+    }
+
 
     /**
      * @param mixed $color

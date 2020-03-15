@@ -2,47 +2,47 @@
 <include href="views/navbar.html"></include>
 <body class="masthead">
     <include href="views/jumbotron-admin.html"></include>
-
-    <div id="ships" class="bg-secondary center-block float-left p-3 text-center">
-        <h2>All Ordered Ships</h2>
-        <table id="ship-table" class="display">
-            <thead>
-            <tr>
-                <th>Ship ID</th>
-                <th>User ID</th>
-                <th>Ship Name</th>
-                <th>Generator</th>
-                <th>Shield</th>
-                <th>Engine</th>
-                <th>Hyperdrive</th>
-                <th>Color</th>
-                <th>Purpose</th>
-                <th>Price</th>
-                <th>Power</th>
-            </tr>
-            </thead>
-            <tbody>
-            <repeat group="{{ @ships }}"
-                    value="{{ @ship }}">
-                <tr>
-                    <td>{{@ship[id]}}</td>
-                    <td>{{@ship[user_id]}}</td>
-                    <td>Ship Name</td>
-                    <td>{{@ship[generator]}}</td>
-                    <td>{{@ship[shield]}}</td>
-                    <td>{{@ship[engine]}}</td>
-                    <td>{{@ship[hyperdrive]}}</td>
-                    <td>{{@ship[color]}}</td>
-                    <td>{{@ship[purpose]}}</td>
-                    <td>{{@ship[price]}}</td>
-                    <td>{{@ship[power]}}</td>
-                </tr>
-            </repeat>
-            </tbody>
-        </table>
+<div class="container">
+    <div id="ships" class="bg-secondary mb-lg-5 center-block p-lg-5 text-center">
+         <h2>All Ordered Ships</h2>
+              <table id="ship-table" class="display">
+                   <thead>
+                       <tr>
+                           <th>Ship ID</th>
+                           <th>User ID</th>
+                           <th>Ship Name</th>
+                           <th>Generator</th>
+                           <th>Shield</th>
+                           <th>Engine</th>
+                           <th>Hyperdrive</th>
+                           <th>Color</th>
+                           <th>Purpose</th>
+                           <th>Price</th>
+                           <th>Power</th>
+                       </tr>
+                   </thead>
+                  <tbody>
+                  <repeat group="{{ @ships }}"
+                          value="{{ @ship }}">
+                      <tr>
+                          <td>{{@ship[id]}}</td>
+                          <td>{{@ship[user_id]}}</td>
+                          <td>Ship Name</td>
+                          <td>{{@ship[generator]}}</td>
+                          <td>{{@ship[shield]}}</td>
+                          <td>{{@ship[engine]}}</td>
+                          <td>{{@ship[hyperdrive]}}</td>
+                          <td>{{@ship[color]}}</td>
+                          <td>{{@ship[purpose]}}</td>
+                          <td>{{@ship[price]}}</td>
+                          <td>{{@ship[power]}}</td>
+                      </tr>
+                  </repeat>
+                  </tbody>
+              </table>
     </div>
 
-    <div id="ships" class="bg-secondary center-block float-right p-3 text-center">
+    <div id="ship" class="bg-secondary center-block p-lg-5 text-center">
         <h2> All Users </h2>
         <table id="user-table" class="display">
             <thead>
@@ -61,13 +61,52 @@
                     <td>{{@user[fname]}}</td>
                     <td>{{@user[lname]}}</td>
                     <td>{{@user[email]}}</td>
-
                 </tr>
             </repeat>
             </tbody>
         </table>
     </div>
+</div>
 
+    <script src="script/nav.js"></script>
+    <script src="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="//cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+    <script>
+        $('#ship-table').DataTable( {
+            responsive: {
+                details: {
+                    display: $.fn.dataTable.Responsive.display.modal( {
+                        header: function ( row ) {
+                            var data = row.data();
+                            return 'Details for '+data[0]+' '+data[1];
+                        }
+                    } ),
+                    renderer: $.fn.dataTable.Responsive.renderer.tableAll( {
+                        tableClass: 'table'
+                    } )
+                }
+            },
+        } );
+        $('#user-table').DataTable( {
+            responsive: {
+                details: {
+                    display: $.fn.dataTable.Responsive.display.modal( {
+                        header: function ( row ) {
+                            var data = row.data();
+                            return 'Details for '+data[0]+' '+data[1];
+                        }
+                    } ),
+                    renderer: $.fn.dataTable.Responsive.renderer.tableAll( {
+                        tableClass: 'table'
+                    } )
+                }
+            },
+        } );
+    </script>
 </body>
 <footer class="footer mt-lg-4">Medina and Maret Interstellar Engineering</footer>
 </html>

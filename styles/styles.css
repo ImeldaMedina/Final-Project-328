@@ -10,18 +10,33 @@ a{
 button{
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
-.card-title{
-    color: #707c80;
+.card-img{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    height: 250px;
+    margin-bottom: 40px;
+    border: 5px solid #ccc;
+    float: left;
+    -webkit-transition: margin 0.5s ease-out;
+    -moz-transition: margin 0.5s ease-out;
+    -o-transition: margin 0.5s ease-out;
+}
+.card-img:hover {
+    margin-top: 4px;
 }
 .card-link{
     color: #707c80;
+}
+.card-title{
+    color: #707c80;
+}
+#divIntro:hover {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 #divIntro {
     background-color: #333333;
     color:gray;
     padding: 0.5em 10px;
     font-size: 25px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 /* Dropdown container - needed to position the dropdown content */
 .dropdown {
@@ -124,17 +139,17 @@ button{
     color: white;
     text-align: center;
 }
-h2{
+h2 {
     color: white;
-}
-
-img{
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    width: 500px;
-    height: 450px;
-    margin-bottom: 40px;
 
 }
+.top-bottom{
+    color:gray;
+    font-size:18px;
+    font-family: "Helvetica Neue", "Arial", sans-serif;
+    font-style: italic;
+}
+
 input[type=text] {
      background: transparent;
      border: none;
@@ -157,11 +172,11 @@ input[type=password] {
     background-repeat: no-repeat;
 }
 @keyframes example {
-    0%   {color: whitesmoke;}
-    25%  {color: mediumslateblue;}
+    0%   {color: white;}
+    25%  {color: greenyellow;}
     50%  {color: white;}
-    75%  {color: deepskyblue;}
-    100% {color: lightpink;}
+    75%  {color: yellow;}
+    100% {color: lawngreen;}
 }
 .lead{
     color:white;
@@ -170,40 +185,9 @@ input[type=password] {
     height: 100%;
     min-height: 600px;
     background-color: #333333;
-    /*background-image: url('https://source.unsplash.com/BtbjCFUvBXs/1920x1080');*/
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-}
-@media (max-width: 700px){
-    /* Reversing order of elements in user comments,
-    such that avatar and information appear after text. */
-
-    .comments.user_comments .information{
-        order: 3;
-    }
-
-    .comments.user_comments .avatar{
-        order: 2;
-    }
-
-    .comments.user_commentsp{
-        order: 1;
-    }
-
-    /* Making the paragraph in the comments utilize up the entire width,
-    making avatar and user information wrap to next line*/
-
-    .comments p{
-        width: 100%;
-    }
-
-    /* Aligning towards the beginning of the container (i.e. towards the left)
-    all elements inside author comments. */
-
-    .comments.author_comments{
-        justify-content: flex-start;
-    }
 }
 /* When the screen is less than 600 pixels wide, hide all links, except for the first one ("Home"). Show the link that contains should open and close the topnav (.icon) */
 @media screen and (max-width: 600px) {
@@ -214,10 +198,9 @@ input[type=password] {
         float: right;
         display: block;
     }
-}
 
 /* The "responsive" class is added to the topnav with JavaScript when the user clicks on the icon. This class makes the topnav look good on small screens (display the links vertically instead of horizontally) */
-@media screen and (max-width: 600px) {
+/*@media screen and (max-width: 600px) {*/
     .topnav.responsive {position: relative;}
     .topnav.responsive a.icon {
         position: absolute;

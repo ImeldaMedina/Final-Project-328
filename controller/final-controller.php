@@ -73,7 +73,7 @@ class FinalController
                 $_SESSION['name'] = $name;
 
                 //Redirect to page 1
-                $this->_f3->reroute('/home');
+                $this->_f3->reroute('/customize');
             }
         }
         $view = new Template();
@@ -83,10 +83,10 @@ class FinalController
 
     public function customShip()
     {
-        if (!isset($_SESSION['username'])) { // must be logged in
-            $this->_f3->reroute('/login');
-            echo "<script type='text/javascript'>alert('You must be logged in to place an order');</script>";
-        }
+//        if (!isset($_SESSION['username'])) { // must be logged in
+//            $this->_f3->reroute('/login');
+//            echo "<script type='text/javascript'>alert('You must be logged in to place an order');</script>";
+//        }
         //If form has been submitted, validate
         if($_SERVER['REQUEST_METHOD'] == 'POST') {
             $isValid = true;

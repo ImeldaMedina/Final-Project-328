@@ -215,7 +215,7 @@ class FinalController
     {
         //this will wipe everything
         $_SESSION = array();
-        //session_destroy();
+        session_destroy();
 
 
         $view = new Template();

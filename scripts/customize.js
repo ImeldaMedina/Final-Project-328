@@ -23,13 +23,12 @@ $('option').on('click', function(){
 
     let $totalPrice = (Number($genPrice) + Number($shieldPrice) + Number($engPrice) + Number($hyperPrice))
         * Number($purpPrice);
+    $totalPrice = $totalPrice.toFixed(2);
 
     $('#priceLabel').html('Total Price: $ '+$totalPrice);
     $('#price').attr('value',$totalPrice);
     $('#powerLabel').html('Ship Power: '+$power +' MW');
     $('#power').attr('value',$power);
-
-
 
 
     if($power < 0){

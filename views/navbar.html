@@ -15,6 +15,9 @@
 <!--        </div>-->
 <!--    </div>-->
     <a href="logout">log Out</a>
+    <check if="{{@_SESSION[isAdmin]}}">
+        <a href="admin">Admin Tools</a>
+    </check>
     <a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
 </div>
 

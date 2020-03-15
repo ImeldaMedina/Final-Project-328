@@ -1,8 +1,17 @@
 <!--nav bar-->
 <div class="topnav" id="myTopnav">
     <a href="home">Home</a>
-    <a href="login">login</a>
-    <a href="newUser">New User</a>
+    <check if="{{@_SESSION[username]}}">
+        <true>
+            <a href="logout" id="logout">Logout</a>
+            <script>logout = document.getElementById('logout')</script>
+        </true>
+        <false>
+            <a href="login">Login</a>
+            <a href="newUser">New User</a>
+        </false>
+    </check>
+
 <!--    <a href="customize">Order a Starship</a>-->
 <!--    <div class="dropdown">-->
 <!--        <button class="dropbtn">Dropdown-->
@@ -14,7 +23,7 @@
 <!--            <a href="#">Link 3</a>-->
 <!--        </div>-->
 <!--    </div>-->
-    <a href="logout">log Out</a>
+
     <check if="{{@_SESSION[isAdmin]}}">
         <a href="admin">Admin Tools</a>
     </check>

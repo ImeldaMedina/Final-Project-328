@@ -217,12 +217,9 @@ class FinalController
         $_SESSION = array();
         session_destroy();
 
-
         $view = new Template();
-        echo $view->render('views/home.html');
 
-
-        echo "<script type='text/javascript'>alert('you have been logged out');</script>";
+        $this->_f3->reroute('/home');
     }
 
 

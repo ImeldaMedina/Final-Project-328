@@ -18,3 +18,17 @@ legend {
         font-size: 10px;
     }
 }
+
+#review {
+    background-color: gray;
+
+    position: fixed;
+    width: 200px;
+
+    top: 50%;
+    left: 5%;
+}
+
+#price, #power{
+    display: none;
+}

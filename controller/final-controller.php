@@ -6,12 +6,15 @@ class FinalController
     private $_db; // database
 
 
+
+
     public function __construct($f3, $db)
     {
         $this->_f3 = $f3;
         $this->_db = $db;
         $this->_val = new FinalValidation($f3, $db);
     }
+
 
     public function home()
     {
@@ -24,9 +27,7 @@ class FinalController
             echo "<script> confirm('you are already logged in!') </script>";
             $this->_f3->reroute($this->_f3->get('SERVER.HTTP_REFERER'));
         }
-
         if($_SERVER['REQUEST_METHOD'] == 'POST') {
-
 
             $fname = $_POST['fname'];
             $lname = $_POST['lname'];
@@ -36,40 +37,30 @@ class FinalController
 
             $newUser = new NewUser($fname, $lname, $email, $username, $password);
 
-            //echo $_SESSION['username'];
-
             if ($this->_val->validForm()) { // if validated
-
                 $this->_db->newUser($newUser);
-
                 $_SESSION['name'] = $fname.' '.$lname;
-
                 //echo 'no';
                 $this->_f3->reroute('/home');
-
 
             } else {
                 //Store login name in a session variable
                 $this->_f3->set('newUser', $_POST);
             }
         }
-
         $view = new Template();
         echo $view->render('views/new-user.html');
     }
     public function login()
     {
-
         if (isset($_SESSION['username'])) {
             $this->_f3->reroute($this->_f3->get('SERVER.HTTP_REFERER'));
         }
 
-        if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
+        if($_SERVER['REQUEST_METHOD'] == 'POST') {
             $username = $_POST['username'];
             $password= $_POST['password'];
-
-            //echo $_SESSION['username'];
 
             $id = $this->_db->validateLogin($username, $password)['id'];
 
@@ -77,31 +68,27 @@ class FinalController
                 //echo 'no';
             } else {
                 $_SESSION['username'] = $username;
-
                 $name = $this->_db->getName($id);
                 $name = $name['fname'].' '.$name['lname'];
                 $_SESSION['name'] = $name;
 
-
-                $this->_f3->reroute('/home');
                 //Redirect to page 1
+                $this->_f3->reroute('/home');
             }
         }
         $view = new Template();
         echo $view->render('views/login.html');
     }
 
+
     public function customShip()
     {
-
         if (!isset($_SESSION['username'])) { // must be logged in
             $this->_f3->reroute('/login');
             echo "<script type='text/javascript'>alert('You must be logged in to place an order');</script>";
         }
-
         //If form has been submitted, validate
         if($_SERVER['REQUEST_METHOD'] == 'POST') {
-
             $isValid = true;
             //Get the data from the form
             $purpose = $_POST['purpose'];
@@ -109,7 +96,6 @@ class FinalController
                 $this->_f3->set("errors['purpose']", "What is this ship used for?");
                 $isValid = false;
             }
-
             $color= $_POST['color'];
             $shielding = $_POST['shielding'];
             if(!$this->_db->getSpecificModule('Shield', $shielding)){
@@ -145,37 +131,18 @@ class FinalController
             }
 
             //Add data to hive
-
             $this->_f3->set('ship', $ship);
-
 
             //If data is valid
             if($isValid){
-
                 //write data to session
-
                 $_SESSION['ship'] = $ship;
-
                 $_SESSION['purp'] = $purpose;
                 $_SESSION['col'] = $color;
                 $_SESSION['shield'] =$shielding;
                 $_SESSION['gen'] =$generator;
                 $_SESSION['eng'] =$engine;
                 $_SESSION['hyper'] =$hyperdrive;
-
-                //redirect to finalize
-/*
-                if(is_a($ship, 'BattleShip')) {
-                    $this->_f3->reroute('/finalize');
-                }
-                if(is_a($ship, 'Liner')) {
-                    $this->_f3->reroute('/finalize');
-                }
-                if(is_a($ship, 'Yacht')) {
-                    $this->_f3->reroute('/finalize');
-                }*/
-
-
 
                 $this->_f3->reroute('/summary');
             }
@@ -184,27 +151,19 @@ class FinalController
         echo $view->render('views/customize.html');
     }
 
+
     public function summary()
     {
 
+
         $ship = $_SESSION['ship'];
-
-        echo '<br>';
-        echo '<br>';
-        echo '<br>';
-        //echo '<br>';
-        //var_dump($ship);
-
-        //var_dump($ship->getHyperdrive());
-        //echo 'test';
-
-        //$this->_f3->set('purp',$purpose);
 
         $this->_f3->set('col',$ship->getColor());
         $this->_f3->set('shield',$this->_db->getSpecificModule('Shield', $ship->getShield())['shield_name']);
         $this->_f3->set('gen', $this->_db->getSpecificModule('Generator', $ship->getGenerator())['generator_name']);
         $this->_f3->set('eng',$this->_db->getSpecificModule('Engine', $ship->getEngine())['engine_name']);
         $this->_f3->set('hyper',$this->_db->getSpecificModule('Hyperdrive', $ship->getHyperdrive())['hyperdrive_name']);
+
 
         if(is_a($ship, 'BattleShip')) {
             $this->_f3->set('purp', 'Battleship');
@@ -216,14 +175,25 @@ class FinalController
             $this->_f3->set('purp', 'Multipurpose');
         }
 
+        //If image was clicked print it
+        if( $_POST['rateButton'] ) {
+            $keys = array_keys($_POST['rateButton']);
+            $clicked = $keys[0];
+            echo "Image pressed: $clicked";
+            //write data to session
+            $_SESSION['rateButton'] = $clicked;
+        }
+
         if (!isset($_SESSION['username'])) { // must be logged in
             $this->_f3->reroute('/login');
             echo "<script type='text/javascript'>alert('You must be logged in to place an order');</script>";
         }
 
+
         $view = new Template();
         echo $view->render('views/summary.html');
     }
+
 
     public function logout()
     {
@@ -231,12 +201,13 @@ class FinalController
         $_SESSION = array();
         //session_destroy();
 
+
         $view = new Template();
         echo $view->render('views/home.html');
 
+
         echo "<script type='text/javascript'>alert('you have been logged out');</script>";
     }
-
 
 
 }

@@ -179,6 +179,8 @@ class FinalDatabase
 
         $this->newUserLogin($user, $userId);
 
+        return $userId;
+
     }
 
     private function newUserLogin($user, $userId)

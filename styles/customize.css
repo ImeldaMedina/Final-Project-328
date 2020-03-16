@@ -24,6 +24,10 @@ input[type=text] {
     color: black;
 }
 
+select {
+    width: 100%;
+}
+
 #review {
     background-color: gray;
 

@@ -77,6 +77,10 @@ $f3->route('POST /updateUsers', function(){
     $GLOBALS['controller']->updateUsers();
 });
 
+$f3->route('GET /deleteUser', function(){
+    $GLOBALS['controller']->deleteUser();
+});
+
 $f3->route('GET /test', function($f3){
     global $db;
 

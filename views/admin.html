@@ -3,8 +3,9 @@ Elijah Maret
 3-15-2020
 328/admin.html-->
 <include href="views/header.html"></include>
-<include href="views/navbar.html"></include>
+
 <body class="masthead">
+<include href="views/navbar.html"></include>
     <include href="views/jumbotron-admin.html"></include>
 <div class="container">
     <div id="ships" class="bg-light mb-lg-5 center-block p-lg-5 text-center">
@@ -63,7 +64,7 @@ Elijah Maret
                 <repeat group="{{ @users }}"
                         value="{{ @user }}">
                     <tr>
-                        <td>{{@user[id]}}</td>
+                        <td><a class = 'deleteUser' href = "deleteUser?id={{@user[id]}}">{{@user[id]}}</a></td>
                         <td>
                             <input type="checkbox" value = "{{ @user[id] }}" name = 'admins[]'
                             <check if ="{{@user[is_admin]}}">
@@ -82,6 +83,8 @@ Elijah Maret
         </form>
     </div>
 </div><!--end of container-->
+
+
     <script src="script/nav.js"></script>
     <script src="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
@@ -89,38 +92,10 @@ Elijah Maret
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script src="//cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
-    <script>
-        $('#ship-table').DataTable( {
-            responsive: {
-                details: {
-                    display: $.fn.dataTable.Responsive.display.modal( {
-                        header: function ( row ) {
-                            var data = row.data();
-                            return 'Details for '+data[0]+' '+data[1];
-                        }
-                    } ),
-                    renderer: $.fn.dataTable.Responsive.renderer.tableAll( {
-                        tableClass: 'table'
-                    } )
-                }
-            },
-        } );
-        $('#user-table').DataTable( {
-            responsive: {
-                details: {
-                    display: $.fn.dataTable.Responsive.display.modal( {
-                        header: function ( row ) {
-                            var data = row.data();
-                            return 'Details for '+data[0]+' '+data[1];
-                        }
-                    } ),
-                    renderer: $.fn.dataTable.Responsive.renderer.tableAll( {
-                        tableClass: 'table'
-                    } )
-                }
-            },
-        } );
-    </script>
-</body>
+    <script src="script/admin.js"></script>
+
+
 <include href="views/footer.html"></include>
+</body>
+
 </html>

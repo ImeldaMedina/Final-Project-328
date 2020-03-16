@@ -1,6 +1,7 @@
 <?php
 /**
  * @author Imelda Medina
+ * @author Elijah Maret
  * @Version 1.0
  * Class Final controller defines routes, validates the data form the new user, redirects and sends data to database.
  */
@@ -39,7 +40,7 @@ class FinalController
             $newUser = new NewUser($fname, $lname, $email, $username, $password);
 
             if ($this->_val->validForm()) { // if validated
-                $this->_db->newUser($newUser);
+                $_SESSION['userID'] = $this->_db->newUser($newUser);
                 $_SESSION['username'] = $username;
                 $_SESSION['name'] = $fname.' '.$lname;
                 //echo 'no';
@@ -97,7 +98,6 @@ class FinalController
     {
         if (!isset($_SESSION['username'])) { // must be logged in
             $this->_f3->reroute('/login');
-            echo "<script type='text/javascript'>alert('You must be logged in to place an order');</script>";
         }
         //If form has been submitted, validate
         if($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -136,11 +136,11 @@ class FinalController
 
             if($purpose == 'p-0001'){
                 $ship = new StarShip($name, $generator, $engine, $hyperdrive, $shielding, $color, $power, $price);
-            } else if ($purpose = 'p-0002') {
+            } else if ($purpose == 'p-0002') {
                 $ship = new BattleShip($name, $generator, $engine, $hyperdrive, $shielding, $color, $power, $price);
-            } else if ($purpose = 'p-0003'){
+            } else if ($purpose == 'p-0003'){
                 $ship = new Liner($name, $generator, $engine, $hyperdrive, $shielding, $color, $power, $price);
-            } else if ($purpose = 'p-0004'){
+            } else if ($purpose == 'p-0004'){
                 $ship = new Yacht($name, $generator, $engine, $hyperdrive, $shielding, $color, $power, $price);
             } else { // if invalid ship type
                 $this->_f3->reroute('/customize');
@@ -154,6 +154,7 @@ class FinalController
             if($isValid){
                 //write data to session
                 $_SESSION['ship'] = $ship;
+
                 $this->_db->addShip($ship);
 
                 $this->_f3->reroute('/summary');
@@ -271,5 +272,12 @@ class FinalController
 
     }
 
+    public function deleteUser()
+    {
+        $this->_db->deleteUser($_GET['id']);
+
+        $this->_f3->reroute('/admin');
+
+    }
 
 }

@@ -1,7 +1,10 @@
 <include href="views/header.html"></include>
-<include href="views/navbar.html"></include>
+
 <link rel="stylesheet" type="text/css" href="styles/customize.css">
 <body class="masthead">
+<include href="views/navbar.html"></include>
+
+
 <div class="text-light">
     <include href="views/jumbotron.html"></include>
     <div class="container h-100">
@@ -128,8 +131,6 @@
                                 <div class="form-group col-md-6">
                                     <label for="purpose">Purpose:</label>
                                     <select id="purpose" name = 'purpose'>
-                                        <option value="none"
-                                                data-price-multiply = "1">-- Purpose --</option>
                                         <repeat group="{{ @purposes }}"
                                                 value="{{ @purpose }}">
                                             <option value="{{ @purpose[purpose_id] }}"
@@ -200,9 +201,8 @@
                                         </false>
                                     </check></label>
 
-                                <button id = 'submit' class="mt-lg-5 mb-lg-5" type="submit">Check Out</button>
+                                <button id ='submit' class="mt-lg-5 mb-lg-5" type="submit">Check Out</button>
                             </div>
-
                         </div>
                     </form>
 
@@ -216,14 +216,12 @@
             </div>
         </div>
     </div>
-
-
-
 </div>
 
 <script src="https://code.jquery.com/jquery.js"></script>
 <script src="script/customize.js"></script>
 
-</body>
 <include href="views/footer.html"></include>
+</body>
+
 </html>

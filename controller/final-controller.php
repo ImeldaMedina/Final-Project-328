@@ -24,7 +24,6 @@ class FinalController
     public function newUser()
     {
         if (isset($_SESSION['username'])) {
-            echo "<script> confirm('you are already logged in!') </script>";
             $this->_f3->reroute($this->_f3->get('SERVER.HTTP_REFERER'));
         }
         if($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -37,7 +36,7 @@ class FinalController
 
             $newUser = new NewUser($fname, $lname, $email, $username, $password);
 
-            if ($this->_val->validForm()) { // if validated
+            if (!$this->_val->validForm()) { // if validated
                 $this->_db->newUser($newUser);
                 $_SESSION['username'] = $username;
                 $_SESSION['name'] = $fname.' '.$lname;

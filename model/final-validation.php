@@ -131,14 +131,5 @@ class FinalValidation
     }
 
 
-    public function validFormCustomize()
-    {
-        $isValid = true;
-
-
-        //If the $errors array is empty, then we have valid data
-//        var_dump($this->_errors);
-        return $isValid;
-    }
 
 }

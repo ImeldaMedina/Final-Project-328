@@ -1,7 +1,4 @@
-
-
-
-$('option').on('click', function(){
+$('#option').on('click', function(){
     const $gen = $('#generator option:selected');
     const $shield = $('#shielding option:selected');
     const $eng = $('#engine option:selected');

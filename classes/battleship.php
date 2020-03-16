@@ -1,11 +1,16 @@
 <?php
+/**
+ * @author Imelda Medina
+ * @Version 1.0
+ * Class BattleShip will get the battle strength
+ */
 class BattleShip extends StarShip{
 
     private $_battleStrength;
 
 
     /**
-     * @return mixed
+     * @return the battle strength
      */
     public function getBattleStrength()
     {
@@ -18,12 +23,5 @@ class BattleShip extends StarShip{
     public function setBattleStrength($battleStrength)
     {
         $this->_battleStrength = $battleStrength;
-    }
-
-
-
-    public function fight()
-    {
-
     }
 }

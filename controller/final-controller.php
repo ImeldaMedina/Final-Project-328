@@ -1,12 +1,14 @@
 <?php
+/**
+ * @author Imelda Medina
+ * @Version 1.0
+ * Class Final controller defines routes, validates the data form the new user, redirects and sends data to database.
+ */
 class FinalController
 {
     private $_f3; //router
     private $_val; //validation
     private $_db; // database
-
-
-
 
     public function __construct($f3, $db)
     {

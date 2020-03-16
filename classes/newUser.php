@@ -1,5 +1,9 @@
 <?php
-
+/**
+ * @author Imelda Medina
+ * @Version 1.0
+ * Class NewUser sets the new user information like first name, last name,email, username, and password
+ */
 class NewUser
 {
     private $_fname;
@@ -50,7 +54,7 @@ class NewUser
     }
 
     /**
-     * @param mixed $lname
+     * @param mixed $lname represents the last name of the user
      */
     public function setLname($lname)
     {
@@ -58,7 +62,7 @@ class NewUser
     }
 
     /**
-     * @return mixed
+     * @return the email of the user
      */
     public function getEmail()
     {
@@ -66,7 +70,7 @@ class NewUser
     }
 
     /**
-     * @param mixed $email
+     * @param mixed $email sets the email
      */
     public function setEmail($email)
     {
@@ -74,7 +78,7 @@ class NewUser
     }
 
     /**
-     * @return mixed
+     * @return gets the user's username
      */
     public function getUsername()
     {
@@ -90,7 +94,7 @@ class NewUser
     }
 
     /**
-     * @return mixed
+     * @return mixed gets the password of the user
      */
     public function getPassword()
     {
@@ -98,7 +102,7 @@ class NewUser
     }
 
     /**
-     * @param mixed $password
+     * @param represents the password of the user
      */
     public function setPassword($password)
     {

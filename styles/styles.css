@@ -103,17 +103,14 @@ button{
 }
 
 .fa-facebook {
-    /*background: #3B5998;*/
     color: white;
 }
 
 .fa-twitter {
-    /*background: #55ACEE;*/
     color: white;
 }
 
 .fa-instagram {
-    /*background: #125688;*/
     color: white;
 }
 
@@ -138,6 +135,10 @@ button{
     background-color: black;
     color: white;
     text-align: center;
+}
+#galaxy{
+    border-radius: 50%;
+    height: 350px;
 }
 h2 {
     color: white;
@@ -164,7 +165,8 @@ input[type=password] {
 }
 
 .jumbotron {
-    background-image: url("../images/images.jpeg");
+    background-image: url("../images/back.jpeg");
+    /*background-image: url("../images/ga.jpg");*/
     height: 200px;
     background-size: 100% 100%;
     border-radius: 5px ;
@@ -173,10 +175,10 @@ input[type=password] {
 }
 @keyframes example {
     0%   {color: white;}
-    25%  {color: greenyellow;}
-    50%  {color: white;}
-    75%  {color: yellow;}
-    100% {color: lawngreen;}
+    25%  {color: fuchsia;}
+    50%  {color: turquoise;}
+    75%  {color: silver;}
+    100% {color: purple;}
 }
 .lead{
     color:white;
@@ -201,41 +203,11 @@ input[type=password] {
     margin: auto;
     font-size: 1.8em;
     animation-name: example;
-    animation-duration: 15s;
-    /*animation-duration: 10s;*/
-    /*animation-timing-function: ease-in-out;*/
+    animation-duration: 10s;
     animation-iteration-count: infinite;
-    /*background-color: white;*/
+
 }
 
-/*#text1{*/
-/*    animation-name: anim-1;*/
-/*}*/
-
-/*#text2{*/
-/*    animation-name: anim-2;*/
-/*}*/
-
-/*#text3{*/
-/*    animation-name: anim-3;*/
-/*}*/
-
-/*@keyframes anim-1 {*/
-/*    0%, 8.3% { left: -100%; opacity: 0; }*/
-/*    8.3%,25% { left: 5%; opacity: 1; }*/
-/*    33.33%, 100% { left: 110%; opacity: 0; }*/
-/*}*/
-/*@keyframes anim-2 {*/
-/*    0%, 33.33% { left: -100%; opacity: 0; }*/
-/*    41.63%, 58.29% { left: 5%; opacity: 1; }*/
-/*    66.66%, 100% { left: 110%; opacity: 0; }*/
-/*}*/
-/*@keyframes anim-3 {*/
-/*    0%, 66.66% { left: -100%; opacity: 0; }*/
-/*    74.96%, 91.62% { left: 10%; opacity: 1; }*/
-/*    100% { left: 110%; opacity: 0; }*/
-/*}*/
-/* Add a black background color to the top navigation */
 .topnav {
     background-color: #222;
     overflow: hidden;

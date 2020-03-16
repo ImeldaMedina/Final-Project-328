@@ -1,4 +1,9 @@
 <?php
+/**
+ * @author Imelda Medina
+ * @Version 1.0
+ * Class Starship  sets name, generator, engine, hyperdrive, shield, power, price, description and color.
+ */
 class StarShip{
     private $_name;
     private $_generator;
@@ -7,7 +12,6 @@ class StarShip{
     private $_shield;
     private $_power;
     private $_price;
-
     private $_description;
     private $_color;
 
@@ -26,7 +30,7 @@ class StarShip{
     }
 
     /**
-     * @return mixed
+     * @return the name of the user
      */
     public function getName()
     {
@@ -34,7 +38,7 @@ class StarShip{
     }
 
     /**
-     * @param mixed $name
+     * @param represents the name of the user
      */
     public function setName($name)
     {
@@ -42,7 +46,7 @@ class StarShip{
     }
 
     /**
-     * @return mixed
+     * @return mixed gets the description of the spaceship
      */
     public function getDescription()
     {
@@ -50,7 +54,7 @@ class StarShip{
     }
 
     /**
-     * @param mixed $description
+     * @param mixed $description represents a description of the spaceship
      */
     public function setDescription($description)
     {
@@ -58,7 +62,7 @@ class StarShip{
     }
 
     /**
-     * @return mixed
+     * @return gets the type of generator of the spaceship
      */
     public function getGenerator()
     {
@@ -66,7 +70,7 @@ class StarShip{
     }
 
     /**
-     * @param mixed $generator
+     * @param represents the spaceship generator
      */
     public function setGenerator($generator)
     {
@@ -74,7 +78,7 @@ class StarShip{
     }
 
     /**
-     * @return mixed
+     * @return mixed get the type of engine
      */
     public function getEngine()
     {
@@ -82,7 +86,7 @@ class StarShip{
     }
 
     /**
-     * @param mixed $engine
+     * @param mixed $engine represents the type of engine
      */
     public function setEngine($engine)
     {
@@ -90,7 +94,7 @@ class StarShip{
     }
 
     /**
-     * @return mixed
+     * @return mixed gets the Hhperdrive type
      */
     public function getHyperdrive()
     {
@@ -98,7 +102,7 @@ class StarShip{
     }
 
     /**
-     * @param mixed $hyperdrive
+     * @param mixed $hyperdrive represents the hyperdrive
      */
     public function setHyperdrive($hyperdrive)
     {
@@ -106,7 +110,7 @@ class StarShip{
     }
 
     /**
-     * @return mixed
+     * @return mixed gets the shield of the spaceship
      */
     public function getShield()
     {
@@ -114,7 +118,7 @@ class StarShip{
     }
 
     /**
-     * @param mixed $shield
+     * @param mixed $shield represents the type of shield
      */
     public function setShield($shield)
     {
@@ -122,7 +126,7 @@ class StarShip{
     }
 
     /**
-     * @return mixed
+     * @return mixed gets the color of the spaceship
      */
     public function getColor()
     {
@@ -130,7 +134,7 @@ class StarShip{
     }
 
     /**
-     * @return mixed
+     * @return represents the power of the spaceship
      */
     public function getPower()
     {
@@ -138,7 +142,7 @@ class StarShip{
     }
 
     /**
-     * @param mixed $power
+     * @param mixed $power represents the power of the spaceship
      */
     public function setPower($power)
     {
@@ -146,7 +150,7 @@ class StarShip{
     }
 
     /**
-     * @return mixed
+     * @return mixed returns the price of the spaceship
      */
     public function getPrice()
     {
@@ -154,7 +158,7 @@ class StarShip{
     }
 
     /**
-     * @param mixed $price
+     * @param mixed $price represents the spaceship price
      */
     public function setPrice($price)
     {
@@ -163,26 +167,11 @@ class StarShip{
 
 
     /**
-     * @param mixed $color
+     * @param mixed $color represente the color of the spaceship
      */
     public function setColor($color)
     {
         $this->_color = $color;
-    }
-
-
-
-    public function launch()
-    {
-
-    }
-    public function hyperjump()
-    {
-
-    }
-    public function land()
-    {
-
     }
 
 }

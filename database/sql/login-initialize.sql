@@ -23,6 +23,5 @@ email varchar(255) NOT NULL
 
 insert into users values (1, 'Admin', 'I. Strator', 'Admin@mail.com');
 
-
 DROP VIEW IF EXISTS userAdmin;
 CREATE VIEW user_admin AS SELECT users.*, login.is_admin FROM login, users WHERE users.id = login.id;

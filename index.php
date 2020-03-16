@@ -83,7 +83,17 @@ $f3->route('GET /test', function(){
 
     echo '</pre>';
 
-    echo ( $db->getSpecificModule('Generator', 'g-0003-B')['generator_name']);
+    foreach ($ships as &$ship){
+        $newString = number_format(floatval($ship['price']), 2);
+        $ship['price'] = $newString;
+        $ship['generator'] = $db->getSpecificModule('Generator', $ship['generator'])['generator_name'];
+    }
+
+    echo '<pre>';
+    var_dump($ships);
+    //var_dump($db->validateLogin("Admin", "dm1n"));
+
+    echo '</pre>';
 
     echo $_SESSION['username'];
 });

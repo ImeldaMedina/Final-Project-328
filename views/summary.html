@@ -13,13 +13,24 @@
                 </div>
                 <h2>We appreciate your business.</h2>
                     <h2>One of our representatives will contact you.</h2>
-                Name: {{ @_SESSION[name] }} <br>
+                Owner Name: {{ @_SESSION[name] }} <br>
+                Ship Name: <check if="{{@shipName}}">
+                                <true>
+                                    {{@shipName}}
+                                </true>
+                                <false>
+                                    Unnamed
+                                </false>
+                            </check> <br>
                 Engine: {{ @eng }} <br>
                 Hyperdrive: {{ @hyper }} <br>
                 Generator: {{ @gen }} <br>
                 Shield: {{ @shield }} <br>
                 Purpose: {{ @purp }} <br>
-                Color: {{ @col }} <br>
+                Color: {{ @col }} <br><hr><br>
+
+                Estimated Price: ${{ @price }} <br>
+                Supplementary Power Capacity: {{ @power }}MW <br>
 
             </div>
         </div>

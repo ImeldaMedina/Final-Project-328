@@ -3,12 +3,12 @@
     <a href="home">Home</a>
     <check if="{{@_SESSION[username]}}">
         <true>
-            <a href="logout" id="logout">Logout</a>
+            <a href="logout" class ='log' id="logout">Logout</a>
             <script>logout = document.getElementById('logout')</script>
         </true>
         <false>
-            <a href="login">Login</a>
-            <a href="newUser">New User</a>
+            <a href="login" class ='log'>Login</a>
+            <a href="newUser" class ='log'>New User</a>
         </false>
     </check>
 

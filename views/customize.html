@@ -123,6 +123,7 @@
 
                         <!--    Purpose -->
                         <fieldset class ='form-group'>
+                            <legend> Other </legend>
                             <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <label for="purpose">Purpose:</label>
@@ -161,7 +162,18 @@
                                     </select>
                                 </div>
                             </div>
-                            <!--    purpose drop down -->
+
+                            <!-- Ship Name -->
+                            <div class="form-row align-content-center">
+                                <div class="form-group col-md-12">
+                                    <label for="purpose">ShipName:</label>
+                                    <input type="text" name = 'shipName'
+                                           <check if ="{{@_POST[shipName]}}">
+                                               value = {{@_POST[shipName]}}
+                                           </check>
+                                    >
+                                </div>
+                            </div>
                         </fieldset>
                         <div class="row h-25 align-items-center">
                             <div id="review" class="col-12 text-center" >
@@ -188,8 +200,6 @@
                                         </false>
                                     </check></label>
 
-
-
                                 <button id = 'submit' class="mt-lg-5 mb-lg-5" type="submit">Check Out</button>
                             </div>
 
@@ -198,9 +208,6 @@
 
 
                     <div class="row h-25 align-items-center">
-                        <div id="review" class="col-12 text-center" >
-
-                        </div>
                         <div class="col-12 text-center">
                             <img id= "galaxy" src="images/images-5.jpeg" class="img-fluid max-width: 100%; img-thumbnail" alt="Responsive image">
                         </div>
@@ -215,7 +222,7 @@
 </div>
 
 <script src="https://code.jquery.com/jquery.js"></script>
-<script src="scripts/customize.js"></script>
+<script src="script/customize.js"></script>
 
 </body>
 <footer class="footer mt-lg-4">Medina and Maret Interstellar Engineering</footer>

@@ -240,7 +240,7 @@ class FinalDatabase
         //1. Define the query
 
 
-        $sql = "insert into ships values (null, :id, :gen, :sld, :eng, :hyp, :col, :purp, :pri, :pow);";
+        $sql = "insert into ships values (null, :id, :shipName, :gen, :sld, :eng, :hyp, :col, :purp, :pri, :pow);";
 
         //2. Prepare the statement
         $statement = $this->_dbh->prepare($sql);
@@ -249,6 +249,7 @@ class FinalDatabase
 
 
         $statement->bindParam(':id', $id);
+        $statement->bindParam(':shipName', $name);
         $statement->bindParam(':gen', $gen);
         $statement->bindParam(':sld', $sld);
         $statement->bindParam(':eng', $eng);

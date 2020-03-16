@@ -131,15 +131,16 @@ class FinalController
 
             $power = $_POST['power'];
             $price = $_POST['price'];
+            $name = $_POST['shipName'];
 
             if($purpose == 'p-0001'){
-                $ship = new StarShip('testName', $generator, $engine, $hyperdrive, $shielding, $color, $power, $price);
+                $ship = new StarShip($name, $generator, $engine, $hyperdrive, $shielding, $color, $power, $price);
             } else if ($purpose = 'p-0002') {
-                $ship = new BattleShip('testName', $generator, $engine, $hyperdrive, $shielding, $color, $power, $price);
+                $ship = new BattleShip($name, $generator, $engine, $hyperdrive, $shielding, $color, $power, $price);
             } else if ($purpose = 'p-0003'){
-                $ship = new Liner('testName', $generator, $engine, $hyperdrive, $shielding, $color, $power, $price);
+                $ship = new Liner($name, $generator, $engine, $hyperdrive, $shielding, $color, $power, $price);
             } else if ($purpose = 'p-0004'){
-                $ship = new Yacht('testName', $generator, $engine, $hyperdrive, $shielding, $color, $power, $price);
+                $ship = new Yacht($name, $generator, $engine, $hyperdrive, $shielding, $color, $power, $price);
             } else { // if invalid ship type
                 $this->_f3->reroute('/customize');
             }
@@ -152,14 +153,7 @@ class FinalController
             if($isValid){
                 //write data to session
                 $_SESSION['ship'] = $ship;
-                $_SESSION['purp'] = $purpose;
-                $_SESSION['col'] = $color;
-                $_SESSION['shield'] =$shielding;
-                $_SESSION['gen'] =$generator;
-                $_SESSION['eng'] =$engine;
-                $_SESSION['hyper'] =$hyperdrive;
-                $_SESSION['pow'] =$power;
-                $_SESSION['pri'] =$price;
+                $this->_db->addShip($ship);
 
                 $this->_f3->reroute('/summary');
             }
@@ -173,11 +167,17 @@ class FinalController
     {
         $ship = $_SESSION['ship'];
 
+        $this->_f3->set('shipName',$ship->getName());
         $this->_f3->set('col',$ship->getColor());
         $this->_f3->set('shield',$this->_db->getSpecificModule('Shield', $ship->getShield())['shield_name']);
         $this->_f3->set('gen', $this->_db->getSpecificModule('Generator', $ship->getGenerator())['generator_name']);
         $this->_f3->set('eng',$this->_db->getSpecificModule('Engine', $ship->getEngine())['engine_name']);
         $this->_f3->set('hyper',$this->_db->getSpecificModule('Hyperdrive', $ship->getHyperdrive())['hyperdrive_name']);
+
+
+        $this->_f3->set('price', number_format(floatval($ship->getPrice()), 2));
+        $this->_f3->set('power', number_format(floatval($ship->getPower())));
+
 
 
         if(is_a($ship, 'BattleShip')) {
@@ -199,12 +199,7 @@ class FinalController
             $_SESSION['rateButton'] = $clicked;
         }
 
-        if (!isset($_SESSION['username'])) { // must be logged in
-            $this->_f3->reroute('/login');
-            echo "<script type='text/javascript'>alert('You must be logged in to place an order');</script>";
-        }
 
-        $this->_db->addShip($ship);
 
         $view = new Template();
         echo $view->render('views/summary.html');
@@ -236,6 +231,15 @@ class FinalController
 
         $ships = $this->_db->getShips();
         $users = $this->_db->getUsers();
+
+        foreach ($ships as &$ship){
+            $newString = number_format(floatval($ship['price']), 2);
+            $ship['price'] = '$'.$newString;
+            $ship['generator'] = $this->_db->getSpecificModule('Generator', $ship['generator'])['generator_name'];
+            $ship['engine'] = $this->_db->getSpecificModule('Engine', $ship['engine'])['engine_name'];
+            $ship['hyperdrive'] = $this->_db->getSpecificModule('Hyperdrive', $ship['hyperdrive'])['hyperdrive_name'];
+            $ship['shield'] = $this->_db->getSpecificModule('Shield', $ship['shield'])['shield_name'];
+        }
 
 
         $this->_f3->set('ships', $ships);

@@ -1,3 +1,7 @@
+<!--@author Imelda Medina and
+Elijah Maret
+3-15-2020
+328/admin.html-->
 <include href="views/header.html"></include>
 <include href="views/navbar.html"></include>
 <body class="masthead">
@@ -39,9 +43,9 @@
                       </tr>
                   </repeat>
                   </tbody>
-              </table>
-    </div>
-
+              </table><!--  end of table ship table-->
+    </div><!-- end of ships div  -->
+<!--All users table-->
     <div id="ship" class="bg-secondary center-block p-lg-5 text-center">
         <h2> All Users </h2>
         <table id="user-table" class="display">
@@ -66,8 +70,7 @@
             </tbody>
         </table>
     </div>
-</div>
-
+</div><!--end of container-->
     <script src="script/nav.js"></script>
     <script src="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
@@ -108,5 +111,5 @@
         } );
     </script>
 </body>
-<footer class="footer mt-lg-4">Medina and Maret Interstellar Engineering</footer>
+<include href="views/footer.html"></include>
 </html>

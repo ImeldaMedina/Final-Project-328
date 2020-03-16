@@ -1,10 +1,15 @@
 <?php
+/**
+ * @author Imelda Medina
+ * @Version 1.0
+ * Class Yacht sets the spaceship rating
+ */
 class Yacht extends StarShip{
 
     private $_starRating;
 
     /**
-     * @return mixed
+     * @return mixed returns the spaceship rating
      */
     public function getStarRating()
     {
@@ -12,15 +17,11 @@ class Yacht extends StarShip{
     }
 
     /**
-     * @param mixed $starRating
+     * @param mixed $starRating represents the rating of the spaceship
      */
     public function setStarRating($starRating)
     {
         $this->_starRating = $starRating;
     }
 
-    public function banquet()
-    {
-
-    }
 }

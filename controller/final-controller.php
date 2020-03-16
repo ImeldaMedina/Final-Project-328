@@ -36,7 +36,7 @@ class FinalController
 
             $newUser = new NewUser($fname, $lname, $email, $username, $password);
 
-            if (!$this->_val->validForm()) { // if validated
+            if ($this->_val->validForm()) { // if validated
                 $this->_db->newUser($newUser);
                 $_SESSION['username'] = $username;
                 $_SESSION['name'] = $fname.' '.$lname;

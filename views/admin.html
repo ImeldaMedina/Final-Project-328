@@ -64,7 +64,13 @@ Elijah Maret
                 <repeat group="{{ @users }}"
                         value="{{ @user }}">
                     <tr>
-                        <td><a class = 'deleteUser' href = "deleteUser?id={{@user[id]}}">{{@user[id]}}</a></td>
+                        <td><a
+                            <check if ="{{@user[is_admin]}}">
+                                <true> class = 'admin' href = '#'</true>
+                                <false> class = 'deleteUser' href = "deleteUser?id={{@user[id]}}" </false>
+                            </check>
+                            >{{@user[id]}}
+                        </a></td>
                         <td>
                             <input type="checkbox" value = "{{ @user[id] }}" name = 'admins[]'
                             <check if ="{{@user[is_admin]}}">

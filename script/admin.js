@@ -32,3 +32,7 @@ $('#user-table').DataTable( {
 $('.deleteUser').on('click', function(){
     return confirm("Do you wish do delete this user?");
 })
+
+$('.admin').on('click', function(){
+    alert("You can't delete admins");
+})

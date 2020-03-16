@@ -22,12 +22,9 @@ input[type=text] {
 
 #review {
     background-color: gray;
-
     position: fixed;
     width: 200px;
 
-    top: 50%;
-    left: 5%;
     z-index: 500;
 }
 
@@ -48,10 +45,17 @@ select {
 @media only screen and (max-width: 1200px){
 
     #review {
+        bottom: 0;
         padding-top: 25px;
         width: 100%;
         height: 200px;
         left: 0;
-        top: 90%
+    }
+}
+
+@media only screen and (min-width: 1200px){
+    #review {
+        top: 50%;
+        left: 5%;
     }
 }

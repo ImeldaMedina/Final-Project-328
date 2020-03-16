@@ -8,13 +8,14 @@ Elijah Maret
 <include href="views/navbar.html"></include>
     <include href="views/jumbotron-admin.html"></include>
 <div class="container">
-    <div id="ships" class="bg-light mb-lg-5 center-block p-lg-5 text-center">
-         <h2 id="order">All Ordered Ships</h2>
+    <div id="ships" class="bg-secondary mb-lg-5 center-block p-lg-5 text-center">
+         <h2>All Ordered Ships</h2>
               <table id="ship-table" class="display">
                    <thead>
                        <tr>
                            <th>Ship ID</th>
-                           <th>User ID</th>
+                           <th>Cancel Order</th>
+                           <th>Owner</th>
                            <th>Ship Name</th>
                            <th>Generator</th>
                            <th>Shield</th>
@@ -31,6 +32,7 @@ Elijah Maret
                           value="{{ @ship }}">
                       <tr>
                           <td>{{@ship[id]}}</td>
+                          <td><a href="removeStarship?id={{@ship[id]}}">Remove</a></td>
                           <td>{{@ship[user_id]}}</td>
                           <td>{{@ship[ship_name]}}</td>
                           <td>{{@ship[generator]}}</td>
@@ -47,8 +49,8 @@ Elijah Maret
               </table><!--  end of table ship table-->
     </div><!-- end of ships div  -->
 <!--All users table-->
-    <div id="ship" class="bg-light center-block p-lg-5 text-center">
-        <h2 id="user"> All Users </h2>
+    <div id="ship" class="bg-secondary center-block p-lg-5 text-center">
+        <h2> All Users </h2>
         <form id="adminChange" method="post" action="updateUsers">
             <table id="user-table" class="display">
                 <thead>
@@ -85,7 +87,7 @@ Elijah Maret
                 </repeat>
                 </tbody>
             </table>
-            <button id ='submit' class="mt-lg-5 mb-lg-5" type="submit">Make Admin</button>
+            <button id = 'submit' class="mt-lg-5 mb-lg-5" type="submit">Make Admin</button>
         </form>
     </div>
 </div><!--end of container-->

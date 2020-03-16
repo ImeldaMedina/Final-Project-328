@@ -17,14 +17,16 @@ class FinalValidation
     {
         $isValid = true;
 
-        $isValid += $this->validName($_POST['fname']);
-        $isValid += $this->validLast($_POST['lname']);
-        $isValid += $this->validEmail($_POST['email']);
-        $isValid += $this->validUsername($_POST['username']);
-        $isValid += $this->validPassword($_POST['password']);
-        $isValid += $this->validRepPassword($_POST['password'], $_POST['rep-password']);
+        $isValid = $this->validName($_POST['fname']) && $isValid;
+        $isValid = $this->validLast($_POST['lname'])&& $isValid;
+        $isValid = $this->validEmail($_POST['email'])&& $isValid;
+        $isValid = $this->validUsername($_POST['username'])&& $isValid;
+        $isValid = $this->validPassword($_POST['password'])&& $isValid;
+        $isValid = $this->validRepPassword($_POST['password'], $_POST['rep-password'])&& $isValid;
         //If the $errors array is empty, then we have valid data
 //        var_dump($this->_errors);
+
+        $isValid += false;
         return $isValid;
     }
     function validName($fname)

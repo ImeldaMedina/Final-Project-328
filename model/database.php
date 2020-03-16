@@ -288,7 +288,7 @@ class FinalDatabase
 
     function getUsers()
     {
-        $sql = "SELECT * FROM users";
+        $sql = "SELECT * FROM user_admin";
 
         //2. Prepare the statement
         $statement = $this->_dbh->prepare($sql);
@@ -344,6 +344,28 @@ class FinalDatabase
 
         //5. Get the result
         $result = $statement->fetch(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
+    function changeAdmin($id, $admin)
+    {
+
+        $sql = "UPDATE `login` SET `is_admin`= :admin WHERE id = :id";
+
+        //2. Prepare the statement
+        $statement = $this->_dbh->prepare($sql);
+
+        //3. Bind the parameters
+        $statement->bindParam(':id', $id);
+        $statement->bindParam(':admin', $admin);
+
+        //4. Execute the statement
+        $statement->execute();
+
+        //5. Get the result
+        $result = $statement->fetch(PDO::FETCH_ASSOC);
+
+
         return $result;
     }
 }

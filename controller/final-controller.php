@@ -250,4 +250,24 @@ class FinalController
     }
 
 
+    public function updateUsers()
+    {
+
+        $users = $this->_db->getUsers();
+        $admins = $_POST['admins'];
+
+        foreach($users as $user){
+            $id = $user['id'];
+            if (in_array($user['id'], $admins)){
+                $this->_db->changeAdmin($id, true);
+            } else {
+                $this->_db->changeAdmin($id, false);
+            }
+        }
+
+        $this->_f3->reroute('/admin');
+
+    }
+
+
 }

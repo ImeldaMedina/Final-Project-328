@@ -72,7 +72,12 @@ $f3->route('GET /admin', function(){
     $GLOBALS['controller']->admin();
 });
 
-$f3->route('GET /test', function(){
+
+$f3->route('POST /updateUsers', function(){
+    $GLOBALS['controller']->updateUsers();
+});
+
+$f3->route('GET /test', function($f3){
     global $db;
 
     $ships = $db->getShips();
@@ -83,17 +88,6 @@ $f3->route('GET /test', function(){
 
     echo '</pre>';
 
-    foreach ($ships as &$ship){
-        $newString = number_format(floatval($ship['price']), 2);
-        $ship['price'] = $newString;
-        $ship['generator'] = $db->getSpecificModule('Generator', $ship['generator'])['generator_name'];
-    }
-
-    echo '<pre>';
-    var_dump($ships);
-    //var_dump($db->validateLogin("Admin", "dm1n"));
-
-    echo '</pre>';
 
     echo $_SESSION['username'];
 });

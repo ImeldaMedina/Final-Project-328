@@ -23,9 +23,6 @@ email varchar(255) NOT NULL
 
 insert into users values (1, 'Admin', 'I. Strator', 'Admin@mail.com');
 
--- https://stackoverflow.com/questions/8710982/md5-password-retrieving
 
---select * from login where password = md5('@dm1n') and admin_status > 0;
-
---$pass = trim($_POST['pass']);
---$pass = md5($pass);
+DROP VIEW IF EXISTS userAdmin;
+CREATE VIEW user_admin AS SELECT users.*, login.is_admin FROM login, users WHERE users.id = login.id;

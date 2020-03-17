@@ -141,7 +141,7 @@ button{
     height: 350px;
 }
 h2 {
-    color: white;
+    color: black;
 
 }
 .top-bottom{
@@ -152,11 +152,11 @@ h2 {
 }
 
 input[type=text] {
-     background: transparent;
-     border: none;
-     border-bottom: 1px solid #000000;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid #000000;
     color: white;
- }
+}
 input[type=password] {
     background: transparent;
     border: none;
@@ -198,7 +198,7 @@ input[type=password] {
 }
 
 td a{
-    color: crimson;
+    color: black;
 }
 
 .text-light-alt{
@@ -289,6 +289,7 @@ td a{
         text-align: left;
     }
 }
-
-
+#user, #order{
+    color:black;
+}
 

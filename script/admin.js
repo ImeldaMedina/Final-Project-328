@@ -30,7 +30,11 @@ $('#user-table').DataTable( {
 } );
 
 $('.deleteUser').on('click', function(){
-    return confirm("Do you wish do delete this user?");
+    return confirm("Do you wish to delete this user?");
+})
+
+$('.deleteShip').on('click', function(){
+    return confirm("Cancel this order?");
 })
 
 $('.admin').on('click', function(){

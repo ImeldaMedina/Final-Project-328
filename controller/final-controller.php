@@ -286,7 +286,13 @@ class FinalController
         $this->_db->deleteUser($_GET['id']);
 
         $this->_f3->reroute('/admin');
+    }
 
+    public function removeStarship()
+    {
+        $this->_db->deleteShip($_GET['id']);
+
+        $this->_f3->reroute('/admin');
     }
 
 }

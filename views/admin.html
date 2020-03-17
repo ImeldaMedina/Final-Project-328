@@ -32,7 +32,7 @@ Elijah Maret
                           value="{{ @ship }}">
                       <tr>
                           <td>{{@ship[id]}}</td>
-                          <td><a href="removeStarship?id={{@ship[id]}}">Remove</a></td>
+                          <td><a class = 'deleteShip' href="removeStarship?id={{@ship[id]}}">Remove</a></td>
                           <td>{{@ship[user_id]}}</td>
                           <td>{{@ship[ship_name]}}</td>
                           <td>{{@ship[generator]}}</td>
@@ -56,6 +56,7 @@ Elijah Maret
                 <thead>
                 <tr>
                     <th>User ID</th>
+                    <th>Delete User</th>
                     <th>Admin</th>
                     <th>First Name</th>
                     <th>Last Name</th>
@@ -66,12 +67,13 @@ Elijah Maret
                 <repeat group="{{ @users }}"
                         value="{{ @user }}">
                     <tr>
+                        <td>{{@user[id]}}</td>
                         <td><a
                             <check if ="{{@user[is_admin]}}">
-                                <true> class = 'admin' href = '#'</true>
-                                <false> class = 'deleteUser' href = "deleteUser?id={{@user[id]}}" </false>
+                                <true> class = 'admin' href = '#' disabled='true'></true>
+                                <false> class = 'deleteUser' href = "deleteUser?id={{@user[id]}}">Remove </false>
                             </check>
-                            >{{@user[id]}}
+
                         </a></td>
                         <td>
                             <input type="checkbox" value = "{{ @user[id] }}" name = 'admins[]'

@@ -132,7 +132,12 @@ class FinalController
 
             $power = $_POST['power'];
             $price = $_POST['price'];
-            $name = $_POST['shipName'];
+
+            $name = trim($_POST['shipName'], ' ');
+            if(!$name){
+                $name = 'unnamed';
+            }
+
 
             if($purpose == 'p-0001'){
                 $ship = new StarShip($name, $generator, $engine, $hyperdrive, $shielding, $color, $power, $price);
@@ -241,6 +246,10 @@ class FinalController
             $ship['engine'] = $this->_db->getSpecificModule('Engine', $ship['engine'])['engine_name'];
             $ship['hyperdrive'] = $this->_db->getSpecificModule('Hyperdrive', $ship['hyperdrive'])['hyperdrive_name'];
             $ship['shield'] = $this->_db->getSpecificModule('Shield', $ship['shield'])['shield_name'];
+            $owner = $this->_db->getName($ship['user_id']);
+            $fname = $owner['fname'];
+            $lname = $owner['lname'];
+            $ship['user_id'] = "$fname $lname";
         }
 
 
@@ -277,7 +286,13 @@ class FinalController
         $this->_db->deleteUser($_GET['id']);
 
         $this->_f3->reroute('/admin');
+    }
 
+    public function removeStarship()
+    {
+        $this->_db->deleteShip($_GET['id']);
+
+        $this->_f3->reroute('/admin');
     }
 
 }

@@ -81,6 +81,10 @@ $f3->route('GET /deleteUser', function(){
     $GLOBALS['controller']->deleteUser();
 });
 
+$f3->route('GET /removeStarship', function(){
+    $GLOBALS['controller']->removeStarship();
+});
+
 $f3->route('GET /test', function($f3){
     global $db;
 

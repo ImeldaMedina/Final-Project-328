@@ -198,7 +198,7 @@ input[type=password] {
 }
 
 td a{
-    color: black;
+    color: crimson;
 }
 
 .text-light-alt{
@@ -289,6 +289,12 @@ td a{
         text-align: left;
     }
 }
+<<<<<<< HEAD
 #user, #order{
     color:black;
 }
+=======
+
+
+
+>>>>>>> ad7c2a063eabd1501fc622cf7781a1e0930dddb6

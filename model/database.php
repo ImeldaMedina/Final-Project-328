@@ -326,8 +326,6 @@ class FinalDatabase
         //5. Get the result
         $result = $statement->fetch(PDO::FETCH_ASSOC);
 
-
-
         return $result;
     }
 
@@ -370,4 +368,25 @@ class FinalDatabase
 
         return $result;
     }
+
+    function deleteShip($id)
+    {
+
+        $sql = "DELETE FROM ships where id = :id";
+
+        //2. Prepare the statement
+        $statement = $this->_dbh->prepare($sql);
+
+        //3. Bind the parameters
+        $statement->bindParam(':id', $id);
+
+        //4. Execute the statement
+        $statement->execute();
+
+        //5. Get the result
+        $result = $statement->fetch(PDO::FETCH_ASSOC);
+
+        return $result;
+    }
+
 }

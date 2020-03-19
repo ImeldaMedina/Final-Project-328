@@ -85,19 +85,5 @@ $f3->route('GET /removeStarship', function(){
     $GLOBALS['controller']->removeStarship();
 });
 
-$f3->route('GET /test', function($f3){
-    global $db;
-
-    $ships = $db->getShips();
-
-    echo '<pre>';
-    var_dump($ships);
-    //var_dump($db->validateLogin("Admin", "dm1n"));
-
-    echo '</pre>';
-
-
-    echo $_SESSION['username'];
-});
 //Run F3
 $f3->run();
